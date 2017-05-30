@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Novi Sad",
+    "ptt": "21000",
+    "maticnaDrzava": 1
+  },
+  {
+    "id": 4,
+    "name": "Beograd",
+    "ptt": "11000",
+    "maticnaDrzava": 1
+  },
+  {
+    "id": 5,
+    "name": "Zagreb",
+    "ptt": "1222",
+    "maticnaDrzava": 2
+  },
+  {
+    "id": 6,
+    "name": "Sarajevo",
+    "ptt": "12122",
+    "maticnaDrzava": 3
+  },
+  {
+    "id": 8,
+    "name": "Izmenjen",
+    "ptt": "123",
+    "maticnaDrzava": 1
+  },
+  {
+    "id": 9,
+    "name": "Temisvar",
+    "ptt": "321111",
+    "maticnaDrzava": 4
+  },
+  {
+    "id": 10,
+    "name": "Vukovar",
+    "ptt": "13111",
+    "maticnaDrzava": 2
+  }
+]

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+	<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style type="text/css">
+	.preview-nm tbody tr:hover {
+		background-color: grey;
+		cursor: pointer;
+	}
+
+	.preview-drzave tbody tr:hover {
+		background-color: grey;
+		cursor: pointer;
+	}
+
+	table tr.selected{
+		background-color: orange;
+	}
+
+	#filter {
+		
+		margin-bottom: 12px;
+	}
+
+	</style>
+<title>Drzave</title>
+</head>
+<body>
+
+<div class="drzave">
+	<h3>Drzave</h3>
+	<table border="1" id="table-drzave" class="preview-drzave table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Naziv</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+	
+	<form id="form-drzave">
+		<table>
+			<tr>
+				<td><input type="button" id="btn-izmeni-drzave" value="Izmeni" class="btn btn-default" data-toggle="modal" data-target="#modal-izmeni-drzave"></td>
+				<td><input type="button" id="btn-brisi-drzave" value="Obrisi" class="btn btn-danger"></td>
+				<td><input type="button" id="btn-next" value="Next" class="btn btn-info"></td>
+			</tr>
+			<tr>
+				<td>Naziv:</td>
+				<td><input type="text" name="name"></td>
+				<td><input type="button" id="btn-dodaj-drzave" value="Dodaj" class="btn btn-success"></td>
+			</tr>
+		</table>
+	</form>
+	
+</div>
+
+<br>
+
+<div class="naseljena-mesta">
+	<h3>Naseljena mesta</h3>
+	<table border="1" id="table-nm" class="preview-nm table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Naziv</th>
+				<th>PTT</th>
+				<th>Drzava</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+	<form id="form-nm">
+		<table>
+			<tr>
+				<td><input type="button" id="btn-izmeni-nm" value="Izmeni" class="btn btn-default" data-toggle="modal" data-target="#modal-izmeni-nm"></td>
+				<td><input type="button" id="btn-brisi-nm" value="Obrisi" class="btn btn-danger"></td>
+			</tr>
+			<tr>
+				<td>Naziv:</td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>PTT:</td>
+				<td><input type="text" name="ptt"></td>
+			</tr>
+			<tr>
+				<td>Drzava:</td>
+				<td>
+					<select name="maticnaDrzava" id="combo-drzava">
+						<option id="default-option" selected="selected" value="0" disabled>Izaberite drzavu</option>
+					</select>
+					<input type="button" name="zoom" value="..." class="btn btn-default" data-toggle="modal" data-target="#modal-zoom">
+				</td>
+				<!-- <td>
+					<input type="button" name="zoom" value="...">
+				</td> -->
+			</tr>
+
+			<tr>
+				<td><input type="button" id="btn-dodaj-nm" value="Dodaj" class="btn btn-success"></td>
+				
+			</tr>
+		</table>
+	</form>
+</div>
+
+
+<!-- Modal Izmeni Drzave-->
+<div id="modal-izmeni-drzave" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Izmena drzave</h4>
+      </div>
+      <div class="modal-body">
+	      <form id="form-izmena-drzave">
+	        <label>Novi naziv:</label>
+	        <input type="text" name="name" id="drzave-izmena-input">
+	       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit-izmena-drzave">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Izmeni Naseljeno mesto-->
+<div id="modal-izmeni-nm" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Izmena naseljenog mesta</h4>
+      </div>
+      <div class="modal-body">
+	      <form id="form-izmena-nm">
+	        <label>Naziv:</label>
+	        <input type="text" name="name" id="nm-izmena-name"></br>
+	        <label>PTT:</label>
+	        <input type="text" name="ptt" id="nm-izmena-ptt"></br>
+	        <label>Drzava:</label>
+	        <select name="maticnaDrzava" id="modal-combo-drzava">
+				<option id="default-option" selected="selected" value="0" disabled>Izaberite drzavu</option>
+			</select>
+	       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit-izmena-nm">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Drzave Zoom-->
+<div id="modal-zoom" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Izaberite drzavu</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="text" name="filter" id="filter" placeholder="Filtriraj drzave.." />
+		<table border="1" id="zoom-table-drzave" class="preview-drzave table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Naziv</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit-zoom">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+var selectedIDnm;
+var selectedIDdrzave;
+var path = 'http://localhost:8080/poslovna';
+
+function fillTables(){
+	$.get(path + "/drzave", function(data){
+		for (var i = data.length - 1; i >= 0; i--) {
+			$("#table-drzave, #zoom-table-drzave").append("<tr><td>" + data[i].id + "</td><td>" + data[i].name + "</td></tr>" );
+			$("#combo-drzava, #modal-combo-drzava").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+		}
+	});
+
+	$.get(path + "/drzave/0/naseljena-mesta", function(data){
+		for (var i = data.length - 1; i >= 0; i--) {
+			$("#table-nm tbody").append("<tr><td>" + data[i].id + "</td><td>" + data[i].name + "</td><td>" + data[i].ptt + "</td><td>" + data[i].maticnaDrzava + "</td></tr>")
+		}
+	});
+}
+
+function refreshCombo(){
+	$("#combo-drzava, #modal-combo-drzava").find('option:not(:first)').remove();
+	$.get(path + "/drzave", function(data){
+		for (var i = data.length - 1; i >= 0; i--) {
+			$("#combo-drzava, #modal-combo-drzava").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+		}
+	});
+}
+
+// FILTER
+$("#filter").on("keyup", function(e){
+	var input, filter, table, tr, td, i;
+	input = $("#filter").val();
+	filter = input.toUpperCase();
+	table = document.getElementById("zoom-table-drzave");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		if (td) {
+		  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		    tr[i].style.display = "";
+		  } else {
+		    tr[i].style.display = "none";
+		  }
+		}       
+	}
+});
+
+$('#btn-next').on('click', function(e){
+	if(selectedIDdrzave != null){
+		window.location.href = path + "/naseljenaMestaV?id=" + selectedIDdrzave;
+	}
+});
+
+$('#submit-zoom').on('click', function(e){
+	$('#combo-drzava option[value="'+selectedIDdrzave+'"]').attr('selected', true);
+	$('#modal-zoom').modal('toggle');
+});
+
+// NASELJENO MESTO brisanje
+$('#btn-brisi-nm').on('click', function(e){
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'DELETE',
+		url: 'http://localhost:8080/poslovna/drzave/0/naseljena-mesta/' + selectedIDnm
+		
+	})
+	.done(function(data){
+		$('.selected').remove();
+	});
+});
+
+// NASELJENO MESTO izmena
+$("#submit-izmena-nm").on("click", function(e){
+	var data = {};
+	$("#form-izmena-nm").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	data.maticnaDrzava = parseInt($("#modal-combo-drzava").val());
+	var jsonD = JSON.stringify(data);
+
+	$.ajax({
+		headers:{
+				'Content-Type':'application/json'
+		},
+		type: 'PUT',
+		url: 'http://localhost:8080/poslovna/drzave/0/naseljena-mesta/' + selectedIDnm,
+		data: jsonD
+	})
+	.done(function(data){
+		$('.selected').remove();
+		$("#table-nm tbody").append("<tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.ptt + "</td><td>" + data.maticnaDrzava + "</td></tr>" );
+		refreshCombo();
+		$("#nm-izmena-name, #nm-izmena-ptt").val("");
+		$("#modal-combo-drzava").val($("#modal-combo-drzava option:first").val());
+		$("modal-izmeni-nm").modal('toggle');
+	});
+});
+
+// NASELJENO MESTO dodavanje
+$("#btn-dodaj-nm").on("click", function(e){
+
+	var data = {};
+	$("#form-nm").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	data.maticnaDrzava = parseInt($("#combo-drzava").val());
+	var jsonD = JSON.stringify(data);
+	
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'POST',
+		url: 'http://localhost:8080/poslovna/drzave/0/naseljena-mesta',
+		data: jsonD
+	})
+	.done(function(data, textStatus, jqXHR){ 
+		$("#table-nm tbody").append("<tr><td class='id'>" + data.id + "</td><td>" + data.name + "</td><td>" + data.ptt + "</td><td>" + data.maticnaDrzava + "</td></tr>");
+	})
+	.fail(function(jqXHR, textStatus, errorThrown){ //replaces .error
+	console.log("error");
+	console.dir(arguments);
+	});
+
+	$(this).closest('form').find("input[type=text], textarea").val("");
+	$("#combo-drzava").val($("#combo-drzava option:first").val());
+});
+
+// DRZAVE brisanje
+$('#btn-brisi-drzave').on('click', function(e){
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'DELETE',
+		url: 'http://localhost:8080/poslovna/drzave/' + selectedIDdrzave
+		
+	})
+	.done(function(data){
+		$('.selected').remove();
+		refreshCombo();
+	});
+});
+
+// DRZAVE izmena
+$("#submit-izmena-drzave").on("click", function(e){
+
+	var data = {};
+	$("#form-izmena-drzave").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	var jsonD = JSON.stringify(data);
+
+	$.ajax({
+		headers:{
+				'Content-Type':'application/json'
+		},
+		type: 'PUT',
+		url: 'http://localhost:8080/poslovna/drzave/' + selectedIDdrzave,
+		data: jsonD
+	})
+	.done(function(data){
+		$('.selected').remove();
+		$("#table-drzave tbody").append("<tr><td class='id'>" + data.id + "</td><td>" + data.name + "</td></tr>" );
+		refreshCombo();
+		$("#drzave-izmena-input").val("");
+		$("modal-izmeni-nm").modal('toggle');
+	});
+
+});
+
+// DRZAVE dodavanje
+$("#btn-dodaj-drzave").on("click", function(e){
+
+	var data = {};
+	$("#form-drzave").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	var jsonD = JSON.stringify(data);
+	
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'POST',
+		url: 'http://localhost:8080/poslovna/drzave',
+		data: jsonD
+	})
+	.done(function(data, textStatus, jqXHR){ 
+		$("#table-drzave, #zoom-table-drzave").append("<tr><td class='id'>" + data.id + "</td><td>" + data.name + "</td></tr>" );
+		$("#combo-drzava").append("<option value='" + data.id + "'>" + data.name + "</option>");
+	})
+	.fail(function(jqXHR, textStatus, errorThrown){ //replaces .error
+	console.log("error");
+	console.dir(arguments);
+	});
+	$(this).closest('form').find("input[type=text], textarea").val("");
+});
+
+
+
+// Select
+$('.preview-nm, .preview-drzave tbody').on("click", "tr", function(){
+	$('.selected').removeClass('selected');
+	$(this).addClass('selected');
+
+	if ($(this).parents('.preview-drzave').length) {
+		selectedIDdrzave = $(this).find('td').eq(0).html();
+	}
+	else {
+		selectedIDnm = $(this).find('td').eq(0).html();
+		
+	}
+	
+});
+
+$(document).ready(function(){
+
+	fillTables();
+
+	
+
+});
+
+
+</script>
+</html>
+
+
