@@ -2,6 +2,9 @@ package com.poslovna.controller;
 
 import java.util.ArrayList;
 
+import javax.interceptor.Interceptors;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poslovna.model.Drzava;
+import com.poslovna.model.users.access.AuthorizationInterceptor;
 import com.poslovna.service.DrzavaService;
 
 @RestController
@@ -28,8 +32,9 @@ public class DrzavaCtrl {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Interceptors(AuthorizationInterceptor.class)
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Drzava>> getAll(){
+	public ResponseEntity<ArrayList<Drzava>> getAll(HttpServletRequest request){
 		ArrayList<Drzava> drz = drzavaService.getAll();
 		if (drz == null){
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
