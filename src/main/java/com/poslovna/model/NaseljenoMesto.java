@@ -1,10 +1,31 @@
 package com.poslovna.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Entity
 public class NaseljenoMesto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id", nullable = true)
 	private int id;
+	
+	@Column(nullable = false)
+	@Size(max = 50)
+	@Pattern(regexp = "[A-Z][a-z]*")
 	private String name;
+	
+	@Column(nullable = false)
+	@Size(max = 5)
+	@Pattern(regexp = "[0-9]{5}")
 	private String ptt;
+	
 	
 	private int maticnaDrzava;
 	

@@ -9,12 +9,12 @@
 	<packaging>war</packaging>
 
 	<name>poslovna</name>
-	<description>Prva kontrolna tacka iz poslovne informatike</description>
+	<description>Platni promet</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -28,7 +28,6 @@
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
 		    <artifactId>gson</artifactId>
-		    <version>2.8.0</version>
 		</dependency>
 				
 		<dependency>
@@ -49,21 +48,24 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-		    <version>1.5.3.RELEASE</version>
 		</dependency>
 		<dependency>
 		    <groupId>javax.interceptor</groupId>
 		    <artifactId>javax.interceptor-api</artifactId>
 		    <version>1.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.0-api</artifactId>
-		    <version>1.0.1.Final</version>
-		</dependency>
+		
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
 		</dependency>
 						
 		
