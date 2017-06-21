@@ -16,7 +16,7 @@ public class Banka {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable = true)
-	private String id;
+	private int id;
 	
 	@Column(nullable = false)
 	@Size(max = 50)
@@ -52,7 +52,7 @@ public class Banka {
 	
 	
 
-	public Banka(String id, String naziv, String sifraBanke, String swift, String obracunskiRacun) {
+	public Banka(int id, String naziv, String sifraBanke, String swift, String obracunskiRacun) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -61,11 +61,11 @@ public class Banka {
 		this.obracunskiRacun = obracunskiRacun;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
