@@ -39,7 +39,7 @@ public class DrzavaService {
 		Reader reader;
 		
 		try {
-			reader = new FileReader("D:\\workspace_4\\poslovna\\src\\main\\webapp\\drzave.json");
+			reader = new FileReader("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\drzave.json");
 			
 			setDrzave(gson.fromJson(reader, type));
 			
@@ -70,7 +70,7 @@ public class DrzavaService {
 		Writer writer;
 		
 		try {
-			writer = new FileWriter("D:\\workspace_4\\poslovna\\src\\main\\webapp\\drzave.json");
+			writer = new FileWriter("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\drzave.json");
 			
 			gson.toJson(drzave, writer);
 			
@@ -95,7 +95,7 @@ public class DrzavaService {
 				
 				Writer writer;
 				try {
-					writer = new FileWriter("D:\\workspace_4\\poslovna\\src\\main\\webapp\\drzave.json");
+					writer = new FileWriter("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\drzave.json");
 					
 					gson.toJson(drzave, writer);
 					
@@ -123,7 +123,7 @@ public class DrzavaService {
 				
 				Writer writer;
 				try {
-					writer = new FileWriter("D:\\workspace_4\\poslovna\\src\\main\\webapp\\drzave.json");
+					writer = new FileWriter("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\drzave.json");
 					
 					gson.toJson(drzave, writer);
 					
