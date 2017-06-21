@@ -34,7 +34,7 @@ public class Klijent{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", nullable = true)
+	@Column(name="id")
 	private int id;
 	
 	@Column(nullable = false)
