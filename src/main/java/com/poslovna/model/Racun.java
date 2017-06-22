@@ -26,7 +26,7 @@ public class Racun {
 	@Column(name="id", nullable = true)
 	private int id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	@Size(max = 18)
 	@Pattern(regexp = "[0-9]{18}")
 	private String brojRacuna;
@@ -52,6 +52,8 @@ public class Racun {
 	
 	@ManyToOne
 	private Valuta valuta;
+	
+	
 	
 	public Racun() {
 		// TODO Auto-generated constructor stub

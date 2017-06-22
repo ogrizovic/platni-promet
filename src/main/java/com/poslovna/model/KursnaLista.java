@@ -1,5 +1,6 @@
 package com.poslovna.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -51,7 +52,7 @@ public class KursnaLista {
 	private Banka banka;
 	
 	@OneToMany(mappedBy = "kursnaLista")
-	private KursUValuti kursUValuti;
+	private Collection<KursUValuti> kursUValuti;
 	
 	public KursnaLista() {
 		// TODO Auto-generated constructor stub
@@ -97,13 +98,15 @@ public class KursnaLista {
 		this.banka = banka;
 	}
 
-	public KursUValuti getKursUValuti() {
+	public Collection<KursUValuti> getKursUValuti() {
 		return kursUValuti;
 	}
 
-	public void setKursUValuti(KursUValuti kursUValuti) {
+	public void setKursUValuti(Collection<KursUValuti> kursUValuti) {
 		this.kursUValuti = kursUValuti;
 	}
+
+	
 	
 	
 }
