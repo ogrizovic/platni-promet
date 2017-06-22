@@ -27,184 +27,21 @@
 	}
 
 	</style>
-<title>Drzave</title>
+<title>HomePage</title>
 </head>
 <body>
-
-<div class="drzave">
-	<h3>Drzave</h3>
-	<table border="1" id="table-drzave" class="preview-drzave table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Naziv</th>
-			</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-	</table>
-
+	<h2>Izaberite vrstu naloga:</h2>
 	
-	<form id="form-drzave">
-		<table>
-			<tr>
-				<td><input type="button" id="btn-izmeni-drzave" value="Izmeni" class="btn btn-default" data-toggle="modal" data-target="#modal-izmeni-drzave"></td>
-				<td><input type="button" id="btn-brisi-drzave" value="Obrisi" class="btn btn-danger"></td>
-				<td><input type="button" id="btn-next" value="Next" class="btn btn-info"></td>
-			</tr>
-			<tr>
-				<td>Naziv:</td>
-				<td><input type="text" name="name"></td>
-				<td><input type="button" id="btn-dodaj-drzave" value="Dodaj" class="btn btn-success"></td>
-			</tr>
-		</table>
-	</form>
-	
-</div>
-
-<br>
-
-<div class="naseljena-mesta">
-	<h3>Naseljena mesta</h3>
-	<table border="1" id="table-nm" class="preview-nm table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Naziv</th>
-				<th>PTT</th>
-				<th>Drzava</th>
-			</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-	</table>
-
-	<form id="form-nm">
-		<table>
-			<tr>
-				<td><input type="button" id="btn-izmeni-nm" value="Izmeni" class="btn btn-default" data-toggle="modal" data-target="#modal-izmeni-nm"></td>
-				<td><input type="button" id="btn-brisi-nm" value="Obrisi" class="btn btn-danger"></td>
-			</tr>
-			<tr>
-				<td>Naziv:</td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>PTT:</td>
-				<td><input type="text" name="ptt"></td>
-			</tr>
-			<tr>
-				<td>Drzava:</td>
-				<td>
-					<select name="maticnaDrzava" id="combo-drzava">
-						<option id="default-option" selected="selected" value="0" disabled>Izaberite drzavu</option>
-					</select>
-					<input type="button" name="zoom" value="..." class="btn btn-default" data-toggle="modal" data-target="#modal-zoom">
-				</td>
-				<!-- <td>
-					<input type="button" name="zoom" value="...">
-				</td> -->
-			</tr>
-
-			<tr>
-				<td><input type="button" id="btn-dodaj-nm" value="Dodaj" class="btn btn-success"></td>
-				
-			</tr>
-		</table>
-	</form>
-</div>
+	<a href="http://localhost:8001/poslovna/uplata.html">Nova Uplata</a>
+	<br>
+	<a href="http://localhost:8001/poslovna/isplata.html">Nova Isplata</a>
+	<br>
+	<a href="http://localhost:8001/poslovna/prenos.html">Novi Prenos</a>
+	<br>
+	<a href="http://localhost:8001/poslovna/naplata.html">Nova Naplata</a>
+	<br>
 
 
-<!-- Modal Izmeni Drzave-->
-<div id="modal-izmeni-drzave" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Izmena drzave</h4>
-      </div>
-      <div class="modal-body">
-	      <form id="form-izmena-drzave">
-	        <label>Novi naziv:</label>
-	        <input type="text" name="name" id="drzave-izmena-input">
-	       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="submit-izmena-drzave">OK</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Modal Izmeni Naseljeno mesto-->
-<div id="modal-izmeni-nm" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Izmena naseljenog mesta</h4>
-      </div>
-      <div class="modal-body">
-	      <form id="form-izmena-nm">
-	        <label>Naziv:</label>
-	        <input type="text" name="name" id="nm-izmena-name"></br>
-	        <label>PTT:</label>
-	        <input type="text" name="ptt" id="nm-izmena-ptt"></br>
-	        <label>Drzava:</label>
-	        <select name="maticnaDrzava" id="modal-combo-drzava">
-				<option id="default-option" selected="selected" value="0" disabled>Izaberite drzavu</option>
-			</select>
-	       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="submit-izmena-nm">OK</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Modal Drzave Zoom-->
-<div id="modal-zoom" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Izaberite drzavu</h4>
-      </div>
-      <div class="modal-body">
-      	<input type="text" name="filter" id="filter" placeholder="Filtriraj drzave.." />
-		<table border="1" id="zoom-table-drzave" class="preview-drzave table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Naziv</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-			</tbody>
-		</table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="submit-zoom">OK</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 </body>

@@ -7,5 +7,5 @@ import com.poslovna.model.users.access.Permission;
 
 @Repository
 public interface PermissionRepo extends CrudRepository<Permission, Integer>{
-	public Permission findByName(String name);
+	public Permission findByPermissionName(String name);
 }

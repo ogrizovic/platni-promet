@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Uplata</title>
+</head>
+<body>
+<form id="forma1">
+Uplatilac:
+<br>
+<input type="text" name="uplatilac">
+<br>
+<br>
+Svrha uplate:
+<br>
+<input type="text" name="svrha">
+<br>
+<br>
+Primalac:
+<br>
+<input type="text" name="primalac">
+<br>
+<br>
+Sifra placanja:
+<br>
+<input type="number" name="sifra">
+<br>
+<br>
+Valuta:
+<br>
+<input type="text" name="valuta">
+<br>
+<br>
+Iznos:
+<br>
+<input type="number" name="iznos">
+<br>
+<br>
+Racun primaoca:
+<br>
+<input type="number" name="racun">
+<br>
+<br>
+Model:
+<br>
+<input type="number" name="model">
+<br>
+<br>
+Poziv na broj:
+<br>
+<input type="number" name="poziv">
+<br>
+<br>
+
+ <button type="button" name="gotovo"  id="dugme1">Gotovo</button> 
+
+</form>
+
+</body>
+
+
+<script type="text/javascript">
+
+$("#dugme1").on("click", function(e){
+	var data = {};
+	$("#forma1").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	var jsonD = JSON.stringify(data);
+	
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'POST',
+		url: 'http://localhost:8001/poslovna/uplata',
+		data: jsonD
+	})
+	
+}
+</script>
+
+</html>

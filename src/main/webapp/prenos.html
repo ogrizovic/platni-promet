@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Prenos</title>
+</head>
+<body>
+
+<form id="forma3">
+Duznik - Nalogodavac:
+<br>
+<input type="text" name="duznal">
+<br>
+<br>
+Svrha uplate:
+<br>
+<input type="text" name="svrha">
+<br>
+<br>
+Poverilac - Primalac:
+<br>
+<input type="text" name="povpri">
+<br>
+<br>
+Sifra placanja:
+<br>
+<input type="number" name="sifra">
+<br>
+<br>
+Valuta:
+<br>
+<input type="text" name="valuta">
+<br>
+<br>
+Iznos:
+<br>
+<input type="number" name="iznos">
+<br>
+<br>
+Racun duznika:
+<br>
+<input type="number" name="racund">
+<br>
+<br>
+Model:
+<br>
+<input type="number" name="model">
+<br>
+<br>
+Poziv na broj:
+<br>
+<input type="number" name="poziv">
+<br>
+<br>
+Racun poverioca:
+<br>
+<input type="number" name="racunp">
+<br>
+<br>
+Model:
+<br>
+<input type="number" name="modelp">
+<br>
+<br>
+Poziv na broj:
+<br>
+<input type="number" name="pozivp">
+<br>
+<br>
+Hitno:
+<br>
+<input type="checkbox" name="hitno">
+<br>
+<br>
+
+ <button type="button" name="gotovo"  id="dugme3">Gotovo</button> 
+
+</form>
+
+</body>
+
+<script type="text/javascript">
+
+$("#dugme3").on("click", function(e){
+	var data = {};
+	$("#forma3").serializeArray().map(function(x){
+		data[x.name] = x.value;
+	}); 
+	var jsonD = JSON.stringify(data);
+	
+	$.ajax({
+		headers:{
+			'Content-Type':'application/json'
+		},
+		type: 'POST',
+		url: 'http://localhost:8001/poslovna/prenos',
+		data: jsonD
+	})
+	
+}
+</script>
+
+</html>
