@@ -1,9 +1,25 @@
 package com.poslovna.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Entity
 public class Drzava {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
-	private String name;
+	
+	@Column(nullable = false)
+	@Size(max = 50)
+	@Pattern(regexp = "[A-Z][a-z]*")
+	private String naziv;
 	
 	public Drzava() {
 		// TODO Auto-generated constructor stub
@@ -12,13 +28,13 @@ public class Drzava {
 
 	public Drzava(String name) {
 		super();
-		this.name = name;
+		this.naziv = name;
 	}
 
 
 	@Override
 	public String toString() {
-		return id + name;
+		return id + naziv;
 	}
 	
 	public int getId() {
@@ -29,12 +45,12 @@ public class Drzava {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNaziv() {
+		return naziv;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
 	}
 	
 	

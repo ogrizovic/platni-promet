@@ -29,7 +29,7 @@ public class DrzavaRegCtrl {
 		ArrayList<NaseljenoMesto> nMesta = nmService.getAll(idDrzave);
 		
 		model.addAttribute("idDrzave", idDrzave);
-		model.addAttribute("drzava", dService.getById(idDrzave).getName());
+		model.addAttribute("drzava", dService.getById(idDrzave).getNaziv());
 		model.addAttribute("nMesta", nMesta);
 		
 		
