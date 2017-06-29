@@ -12,11 +12,12 @@ public class PasswordValidator implements ConstraintValidator<Password, String>{
 	}
 
 	@Override
-	public boolean isValid(String pass, ConstraintValidatorContext ctx) {
-		if(pass == null){
+	public boolean isValid(String password, ConstraintValidatorContext ctx) {
+		if(password == null){
 			return false;
 		}
-		return pass.matches("^(?=.{8,100})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"); // malo, veliko, cifra; min 8
+		System.out.println("\nprovera passa\n");
+		return password.matches("^(?=.{8,100})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"); // malo, veliko, cifra; min 8
 	}
 
 }

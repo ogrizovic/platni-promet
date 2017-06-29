@@ -2,6 +2,7 @@ package com.poslovna.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,8 +32,9 @@ public class Racun {
 	@Pattern(regexp = "[0-9]{18}")
 	private String brojRacuna;
 	
+	@Pattern(regexp = "[ABZabz]{1}")
 	@Column(nullable = false)
-	private boolean status;
+	private String status;
 	
 	
 
@@ -44,10 +46,10 @@ public class Racun {
 	@JoinColumn(name="banka_id")
 	private Banka banka;
 	
-	@OneToMany(mappedBy = "racun")
+	@OneToMany(mappedBy = "racun", cascade = {CascadeType.ALL})
 	private Collection<DnevnoStanjeRacuna> dnevnoStanje;
 	
-	@OneToMany(mappedBy = "racun")
+	@OneToMany(mappedBy = "racun", cascade = {CascadeType.ALL})
 	private Collection<ZatvaranjeRacuna> zatvaranjaRacuna;
 	
 	@ManyToOne
@@ -75,11 +77,11 @@ public class Racun {
 		this.brojRacuna = brojRacuna;
 	}
 
-	public boolean isStatus() {
+	public String isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

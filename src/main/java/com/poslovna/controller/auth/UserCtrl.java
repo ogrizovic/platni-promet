@@ -1,5 +1,6 @@
 package com.poslovna.controller.auth;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.poslovna.controller.Interceptable;
 import com.poslovna.dto.ChangePasswordDto;
+import com.poslovna.dto.RegisterUserDTO;
 import com.poslovna.model.users.Klijent;
 import com.poslovna.model.users.PravnoLice;
 import com.poslovna.model.users.access.AuthorizationInterceptor;
 import com.poslovna.model.users.access.Permission;
 import com.poslovna.model.users.access.Role;
 import com.poslovna.model.users.access.User;
+import com.poslovna.repo.KlijentRepo;
 import com.poslovna.service.BankService;
 import com.poslovna.service.RoleService;
 import com.poslovna.service.UserService;
@@ -42,6 +45,9 @@ public class UserCtrl implements Interceptable{
 	
 	@Autowired
 	private BankService bankService;
+	
+	@Autowired
+	private KlijentRepo klijentRepo;
 	
 	public UserCtrl() {
 		this.methodPerms = new HashMap<>();
@@ -90,7 +96,8 @@ public class UserCtrl implements Interceptable{
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> register(HttpServletRequest request, @RequestBody User newUser){
+	public ResponseEntity<User> register(HttpServletRequest request, @RequestBody RegisterUserDTO newUserDto){
+		
 		
 		User sessionUser = (User) request.getSession().getAttribute("user");
 		
@@ -98,19 +105,22 @@ public class UserCtrl implements Interceptable{
 			return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
 		}
 		
-		User user = userService.getByUsername(newUser.getUsername());
+		User user = userService.getByUsername(newUserDto.getUsername());
 		
 		if(user != null){
-			return new ResponseEntity<User>(newUser, HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		
+		User newUser = new User();
+		newUser.setUsername(newUserDto.getUsername());
+		newUser.setEmail(newUserDto.getEmail());
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(roleService.getByRoleName("CLIENT"));
 		newUser.setRoles(roles);
 		byte[] salt = userService.generateSalt();
 		newUser.setSalt(salt);
 		newUser.setBank(bankService.getById(1));
-		newUser.setPassword(userService.hashPassword(newUser.getPassword(), salt).toString());
+		newUser.setPassword(new String(userService.hashPassword(newUserDto.getPassword(), salt), Charset.forName("US-ASCII")));
 		
 		userService.add(newUser);
 		
@@ -118,27 +128,31 @@ public class UserCtrl implements Interceptable{
 	}
 	
 	// nakon kreiranja user-a(pri cemu se generise userID), 
-	// prelazi se na specifikaciju da li je to 
-	// fizicko ili pravno lice. Lice se veze za prethodno kreiranog user-a pomocu userID-a.
+	// novi user mora da se uloguje, pa onda da unese svoje podatke potrebne za fizicko lice
 	@RequestMapping(
-			value = "/register/fizicko/{userID}", 
+			value = "/register/fizicko", 
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Klijent> registracijaFizickogLica(HttpServletRequest request, 
-			@RequestBody Klijent klijent, @PathParam("userID") int userID){
-		klijent.setUser(userService.getById(userID));
+			@RequestBody Klijent klijent){
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		klijent.setUser(userService.getById(sessionUser.getId()));
+		sessionUser.setKlijent(klijent);
+		
+		klijentRepo.save(klijent);
 		return new ResponseEntity<Klijent>(klijent, HttpStatus.OK); 
 	}
 	
 	@RequestMapping(
-			value = "/register/pravno/{userID}",
+			value = "/register/pravno",
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PravnoLice> registracijaPravnogLica(HttpServletRequest request, 
-			@RequestBody PravnoLice pLice, @PathParam("userID") int userID){
-		pLice.setUser(userService.getById(userID));
+			@RequestBody PravnoLice pLice){
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		pLice.setUser(userService.getById(sessionUser.getId()));
 		return new ResponseEntity<PravnoLice>(pLice, HttpStatus.OK); 
 	}
 	

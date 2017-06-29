@@ -3,7 +3,9 @@ package com.poslovna.model.users;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +32,7 @@ import com.poslovna.model.users.access.User;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Klijent{
+public class Klijent implements Client{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,15 +79,18 @@ public class Klijent{
 	@JsonDeserialize(using = DateDeserializer.class)
 	private Date datumRodjenja;
 	
+	@Column(nullable = false)
+	private boolean fizickoLice;
+	
 	
 	@ManyToOne
 	private NaseljenoMesto mesto;
 	
-	@OneToMany(mappedBy="klijent")
-	private Collection<Racun> racuni;
+	@OneToMany(mappedBy="klijent", cascade = {CascadeType.ALL})
+	private Collection<Racun> racuni = new ArrayList<Racun>();
 	
-	@OneToOne
-	@JoinColumn(name="id_usera")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	public Klijent() {
@@ -200,6 +205,14 @@ public class Klijent{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isFizickoLice() {
+		return fizickoLice;
+	}
+
+	public void setFizickoLice(boolean fizickoLice) {
+		this.fizickoLice = fizickoLice;
 	}
 
 	

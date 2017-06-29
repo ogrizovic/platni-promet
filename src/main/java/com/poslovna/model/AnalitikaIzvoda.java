@@ -31,19 +31,19 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[\\w]{,256}")
+	@Pattern(regexp = "[a-zA-Z]{0,256}")
 	private String nalogodavac;
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[\\w]{,256}")
+	@Pattern(regexp = "[a-zA-Z]{0,256}")
 	private String primalac;
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[\\w]{,256}")
+	@Pattern(regexp = "[a-zA-Z]{0,256}")
 	private String svrhaPlacanja;
 	
 	@Column(name = "datumValute", columnDefinition = "DATE")
@@ -61,53 +61,49 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(min=18, max=18)
 	@NotEmpty
-	@Pattern(regexp = "[\\d]{,18}")
+	@Pattern(regexp = "[0-9]{18}")
 	private String racunDuznika;
 	
 	@Column(unique = false, nullable = false)
-	@Size(min=2, max=2)
-	@NotEmpty
-	@Pattern(regexp = "[\\d]{2}")
-	private int modelZaduzenja;
+	//@Size(min=2, max=2)
+	//@Pattern(regexp = "[0-9]{2}")
+	private Integer modelZaduzenja;
 	
 	@Column(unique = false, nullable = false)
-	@Size(max=2)
+	//@Size(max=2)
 	@NotEmpty
-	@Pattern(regexp = "[\\d]{20}")
+	@Pattern(regexp = "[0-9]{1,20}")
 	private String pozivNaBrojZaduzenja;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false, nullable = true)
 	@Size(min=18, max=18)
 	@NotEmpty
-	@Pattern(regexp = "[\\d]{,18}")
+	@Pattern(regexp = "[0-9]{18}")
 	private String racunPoverioca;
 	
 	@Column(unique = false, nullable = true)
-	@Size(min=2, max=2)
-	@NotEmpty
-	@Pattern(regexp = "[\\d]{2}")
-	private int modelOdobrenja;
+	//@Size(min=2, max=2)
+	//@Pattern(regexp = "[0-9]{2}")
+	private Integer modelOdobrenja;
 	
 	@Column(unique = false, nullable = true)
-	@Size(max=2)
+	//@Size(max=2)
 	@NotEmpty
-	@Pattern(regexp = "[\\d]{20}")
+	//@Pattern(regexp = "[0-9]{1,20}")
 	private String pozivNaBrojOdobrenja;
 	
 	@Column(unique = false, nullable = false)
-	@Size(max=15)
-	@NotEmpty
-	@Pattern(regexp = "^[0-9]+([\\,\\.][0-9]{1,})?$")
-	private double iznos; 
+	//@Size(max=15)
+	//@Pattern(regexp = "[0-9]*\\.[0-9]{1,2}")
+	private Double iznos; 
 	
 	@Column(nullable = false)
 	private boolean hitno;
 	
 	@Column(unique = false, nullable = false)
-	@Size(max=1)
-	@NotEmpty
-	@Pattern(regexp = "[\\d]{1}")
-	private int tipGreske;
+	//@Size(max=1)
+	//@Pattern(regexp = "[0-9]{1}")
+	private Integer tipGreske;
 	
 	
 	
@@ -201,11 +197,11 @@ public class AnalitikaIzvoda {
 		this.racunDuznika = racunDuznika;
 	}
 
-	public int getModelZaduzenja() {
+	public Integer getModelZaduzenja() {
 		return modelZaduzenja;
 	}
 
-	public void setModelZaduzenja(int modelZaduzenja) {
+	public void setModelZaduzenja(Integer modelZaduzenja) {
 		this.modelZaduzenja = modelZaduzenja;
 	}
 
@@ -225,11 +221,11 @@ public class AnalitikaIzvoda {
 		this.racunPoverioca = racunPoverioca;
 	}
 
-	public int getModelOdobrenja() {
+	public Integer getModelOdobrenja() {
 		return modelOdobrenja;
 	}
 
-	public void setModelOdobrenja(int modelOdobrenja) {
+	public void setModelOdobrenja(Integer modelOdobrenja) {
 		this.modelOdobrenja = modelOdobrenja;
 	}
 
@@ -245,7 +241,7 @@ public class AnalitikaIzvoda {
 		return iznos;
 	}
 
-	public void setIznos(double iznos) {
+	public void setIznos(Double iznos) {
 		this.iznos = iznos;
 	}
 
@@ -257,11 +253,11 @@ public class AnalitikaIzvoda {
 		this.hitno = hitno;
 	}
 
-	public int getTipGreske() {
+	public Integer getTipGreske() {
 		return tipGreske;
 	}
 
-	public void setTipGreske(int tipGreske) {
+	public void setTipGreske(Integer tipGreske) {
 		this.tipGreske = tipGreske;
 	}
 

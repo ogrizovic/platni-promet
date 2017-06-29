@@ -1,5 +1,7 @@
 package com.poslovna.controller.auth;
 
+import java.nio.charset.Charset;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,9 @@ public class AuthenticationCtrl {
 		User user = new User();
 		user = userService.getByUsername(loginDto.getUsername());
 		if (user != null){
-			if(!user.getPassword().equals(loginDto.getPassword())){
+			byte[] hashedPassword = userService.hashPassword(loginDto.getPassword(), user.getSalt());
+			String hashedPasswordString = new String(hashedPassword, Charset.forName("US-ASCII"));
+			if(!user.getPassword().equals(hashedPasswordString)){
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			} else {
 				request.getSession().setAttribute("user", user);
