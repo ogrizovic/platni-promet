@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Uplata</title>
 </head>
@@ -13,7 +14,7 @@ Uplatilac:
 <br>
 Svrha uplate:
 <br>
-<input type="text" name="svrha">
+<input type="text" name="svrhaPlacanja">
 <br>
 <br>
 Primalac:
@@ -38,21 +39,39 @@ Iznos:
 <br>
 Racun primaoca:
 <br>
-<input type="number" name="racun">
+<input type="number" name="racunDuznika">
 <br>
 <br>
 Model:
 <br>
-<input type="number" name="model">
+<input type="number" name="modelZaduzenja">
 <br>
 <br>
 Poziv na broj:
 <br>
-<input type="number" name="poziv">
+<input type="number" name="pozivNaBrojZaduzenja">
+<br>
+<br>
+Datum valute:
+<br>
+<input type="date" name="datumValute">
+<br>
+<br>
+Datum prijema:
+<br>
+<input type="date" name="datumPrijema">
 <br>
 <br>
 
  <button type="button" name="gotovo"  id="dugme1">Gotovo</button> 
+ 
+ 
+ <select name="select" id="select">
+  <option value="uplata1" name="name1" selected>uplata1</option>
+  <option value="uplata2" name="name2">uplata2</option>
+  <option value="uplata3" name="name3">uplata3</option>
+</select> 
+ 
 
 </form>
 
@@ -61,23 +80,32 @@ Poziv na broj:
 
 <script type="text/javascript">
 
-$("#dugme1").on("click", function(e){
-	var data = {};
-	$("#forma1").serializeArray().map(function(x){
-		data[x.name] = x.value;
-	}); 
-	var jsonD = JSON.stringify(data);
-	
-	$.ajax({
-		headers:{
-			'Content-Type':'application/json'
-		},
-		type: 'POST',
-		url: 'http://localhost:8001/poslovna/uplata',
-		data: jsonD
-	})
-	
-}
+$(function() {
+	var izabranoIme;
+    $("#select").change(function(){
+    	izabranoIme = $('option:selected', this).attr('name');
+    //$('#name').val("test");
+    console.log(izabranoIme);
+ });
+    
+    $("#dugme1").on("click", function(){
+    	//var zaSlanje = JSON.stringify(izabranoIme);
+    	//console.log(zaSlanje);
+    	
+    	$.ajax({  
+    		headers:{
+    			'Content-Type':'text/plain'
+    		},
+    		type: "POST",  
+    		 url: "http://localhost:8001/poslovna/uplata", 
+    		 data: izabranoIme
+    		})
+    		.done(alert("Uspesno izvrseno!"));
+    	
+    });
+    
+});
+
 </script>
 
 </html>
