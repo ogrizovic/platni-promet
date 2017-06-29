@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -20,6 +21,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.poslovna.model.Banka;
+import com.poslovna.model.users.Klijent;
 
 @Entity
 @Table(name="user")
@@ -42,7 +44,6 @@ public class User {
 	private String email;
 	
 	@Column(nullable = false)
-	@Password
 	private String password;
 	
 	@Column(nullable = false, length=32)
@@ -58,6 +59,10 @@ public class User {
 	@NotNull
 	@ManyToOne
 	private Banka bank;
+	
+	@OneToOne(mappedBy = "user")
+	@JoinColumn(name="klijent_id")
+	private Klijent klijent;
 	
 	/*@NotNull
 	@OneToOne
@@ -142,6 +147,16 @@ public class User {
 	public void setBank(Banka bank) {
 		this.bank = bank;
 	}
+
+	public Klijent getKlijent() {
+		return klijent;
+	}
+
+	public void setKlijent(Klijent klijent) {
+		this.klijent = klijent;
+	}
+
+	
 
 /*	public Subjekat getSubject() {
 		return subject;

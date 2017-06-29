@@ -39,7 +39,7 @@ public class DrzavaService {
 		Reader reader;
 		
 		try {
-			reader = new FileReader("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\drzave.json");
+			reader = new FileReader("src\\main\\webapp\\drzave.json");
 			
 			setDrzave(gson.fromJson(reader, type));
 			

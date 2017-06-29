@@ -37,7 +37,7 @@ public class NaseljenoMestoService {
 		Reader reader;
 		
 		try {
-			reader = new FileReader("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\platni-promet\\src\\main\\webapp\\naseljenaMesta.json");
+			reader = new FileReader("src\\main\\webapp\\naseljenaMesta.json");
 			
 			setNaseljenaM(gson.fromJson(reader, type));
 			

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Racuni</title>
+<style type="text/css">
+	table tr.selected{
+		background-color: orange;
+	}
+</style>
+</head>
+<body>
+
+	<label>Racuni</label>
+	<table id="table-racuni" border="1">
+		<thead>
+			<tr>
+				<th style="display:none;">id</th>
+				<th>Broj racuna</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>123</td>
+				<td>status</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>123</td>
+				<td>status</td>
+			</tr>
+		</tbody>
+	</table>
+	<button type="button" id="btn-izvod">Prikazi izvod</button>
+	<div id="div-izvod" style="display: none;">
+		<h3>Dnevni izvod</h3><br>
+		<ul>
+			<li>Datum:<input type="text" name="datum"></li>
+			<li>Prethodno stanje:<input type="text" id="prethodno-stanje"></li>
+			<li>Promet na teret:<input type="text" id="na-teret"></li>
+			<li>Promet u korist:<input type="text" id="u-korist"></li>
+			<li>Novo stanje:<input type="text" id="novo-stanje"></li>
+		</ul>
+		<label>Analitike izvoda</label>
+		<table id="table-izvod" border="1">
+			<thead>
+				<tr>
+					<th style="display:none;">id</th>
+					<th>Nalogodavac</th>
+					<th>Svrha placanja</th>
+					<th>Primalac</th>
+					<th>Datum prijema</th>
+					<th>Datum valute</th>
+					<th>Racun duznika</th>
+					<th>Model zaduzenja</th>
+					<th>Poziv na br zaduzenja</th>
+					<th>Racun poverioca</th>
+					<th>Model odobrenja</th>
+					<th>Poziv na br odobrenja</th>
+					<th>Hitno</th>
+					<th>Iznos</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>	
+</body>
+
+<script type="text/javascript">
+$(function(){
+
+	var selectedIdRacuna;
+
+	$("#table-racuni").on("click", "tr", function(){
+		$('.selected').removeClass('selected');
+		$(this).addClass('selected');
+
+		selectedIdRacuna = $(this).find('td').eq(0).html();
+		console.log(selectedIdRacuna);
+	});
+
+	$("#btn-izvod").on("click", function(){
+		$.ajax({
+			headers:{
+				'Content-Type': 'text/plain'
+			},
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda',
+			data: selectedIdRacuna
+		})
+	});
+});
+
+</script>
+
+
+</html>
