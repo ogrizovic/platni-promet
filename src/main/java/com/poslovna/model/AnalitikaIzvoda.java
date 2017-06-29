@@ -43,7 +43,7 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[0-9]{0,256}")
+	@Pattern(regexp = "[a-zA-Z]{0,256}")
 	private String svrhaPlacanja;
 	
 	@Column(unique = false, nullable = false)
