@@ -49,13 +49,13 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[0-9]{3}-[0-9]{13}-[0-9]{2}")
+	@Pattern(regexp = "[a-zA-Z0-9]{0,256}")
 	private String datumValute;
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[0-9]{3}-[0-9]{13}-[0-9]{2}")
+	@Pattern(regexp = "[a-zA-Z0-9]")
 	private String datumPrijema;
 	
 	@Column(unique = false, nullable = false)
