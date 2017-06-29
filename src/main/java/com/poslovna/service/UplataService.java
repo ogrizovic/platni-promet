@@ -7,6 +7,7 @@ import javax.interceptor.Interceptors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poslovna.dom.DOMParser;
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.model.users.access.AuthorizationInterceptor;
 import com.poslovna.repo.UplataRepo;
@@ -18,9 +19,12 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	@Autowired
 	private UplataRepo uplataRepo;
 	
+	private String kojiJeXml;
+	
 	public UplataService(){
 		
 	}
+	
 
 	@Override
 	public AnalitikaIzvoda add(AnalitikaIzvoda t) {
@@ -53,7 +57,39 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 		// TODO Auto-generated method stub
 		uplataRepo.delete(id);
 	}
+
+
+	public void saljeMiControler(String nm) {
+		// TODO Auto-generated method stub
+		kojiJeXml = nm;
+		odrediKojiJeXml(kojiJeXml);
+	}
+
+	public AnalitikaIzvoda analitikaIzvoda;
 	
+	DOMParser parser = new DOMParser();
+	
+	public String filePath;
+	
+	public void odrediKojiJeXml(String a){
+		
+		if(a.equals("name1")){
+			System.out.println("11111111111111111111111111111");
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
+			parser.main(filePath);
+			
+		}else if(a.equals("name2")){
+			System.out.println("22222222222222222222222222");
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
+			parser.main(filePath);
+		}else if(a.equals("name3")){
+			System.out.println("333333333333333333333333333333");
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
+			parser.main(filePath);
+		}else{
+			System.out.println("Ne znam kako je izabran xml koji ne postoji.");
+		}
+	}
 	
 	
 
