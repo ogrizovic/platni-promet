@@ -58,18 +58,18 @@ public class AnalitikaIzvoda {
 	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
 	private String datumPrijema;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false, nullable = true)
 	@Size(min=18, max=18)
 	@NotEmpty
 	@Pattern(regexp = "[0-9]{18}")
 	private String racunDuznika;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false, nullable = true)
 	//@Size(min=2, max=2)
 	//@Pattern(regexp = "[0-9]{2}")
 	private Integer modelZaduzenja;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false, nullable = true)
 	//@Size(max=2)
 	@NotEmpty
 	@Pattern(regexp = "[0-9]{1,20}")

@@ -81,7 +81,7 @@ public void odrediKojiJeXml(String a){
 		
 	}else if(a.equals("name2")){
 		//filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\isplata2.xml";
-		filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\isplat2.xml";
+		filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\isplata2.xml";
 		parser.parseXML(filePath);
 		
 	}else if(a.equals("name3")){

@@ -66,20 +66,20 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	public AnalitikaIzvoda odrediKojiJeXml(String a){
 		
 		if(a.equals("name1")){
-			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata1.xml";
-//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
+//			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata1.xml";
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
 			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name2")){
-			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata2.xml";
-//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
+//			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata2.xml";
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
 			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name3")){
-			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata3.xml";
-//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
+//			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata3.xml";
+			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
 			return uplataRepo.save(ai);
 			

@@ -173,6 +173,8 @@ public class DOMParser implements ErrorHandler {
 	      			System.out.println(ai.getDatumValute());
 	    		}
 	    		
+	    		
+	    		///////racun 1
 	    		//racun duynika
 	    		NodeList nodes6 = document.getElementsByTagName("brojRacuna");
 	    		for (int i = 0; i < nodes6.getLength(); i++){
@@ -197,6 +199,37 @@ public class DOMParser implements ErrorHandler {
 	      			ai.setPozivNaBrojZaduzenja(nodes8.item(i).getTextContent());
 	      			System.out.println(ai.getPozivNaBrojZaduzenja());
 	    		}
+	    		
+	    		///////racun 2
+	    		//racun primaoca
+	    		NodeList nodess = document.getElementsByTagName("brojRacuna2");
+	    		for (int i = 0; i < nodess.getLength(); i++){
+	    			printNode(nodess.item(i));
+	      			ai.setRacunPoverioca(nodess.item(i).getTextContent());
+	      			System.out.println(ai.getRacunPoverioca());
+	    		}
+	    		
+	    		//model
+	    		NodeList nodesa = document.getElementsByTagName("model2");
+	    		for (int i = 0; i < nodesa.getLength(); i++){
+	    			printNode(nodesa.item(i));
+	    			int foo = Integer.parseInt(nodesa.item(i).getTextContent());
+	      			ai.setModelOdobrenja(foo);
+	      			System.out.println(ai.getModelOdobrenja());
+	    		}
+	    		
+	    		//poziv na broj
+	    		NodeList nodesd = document.getElementsByTagName("pozivNaBroj2");
+	    		for (int i = 0; i < nodesd.getLength(); i++){
+	    			printNode(nodesd.item(i));
+	      			ai.setPozivNaBrojOdobrenja(nodesd.item(i).getTextContent());
+	      			System.out.println(ai.getPozivNaBrojOdobrenja());
+	    		}
+	    		
+	    		
+	    		
+	    		
+	    		
 	    		
 	    		//iznos
 	    		NodeList nodes9 = document.getElementsByTagName("iznos");
