@@ -1,5 +1,7 @@
 package com.poslovna.controller;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.model.NaseljenoMesto;
@@ -25,14 +28,12 @@ public class UplataCtrl {
 	public UplataCtrl(){	
 	}
 	
-	public Long i = (long) 0;
-	
 	@RequestMapping(method = RequestMethod.POST, consumes=MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<HttpStatus> add(@RequestBody String nm) {
+	public ResponseEntity<HttpStatus> add(@RequestBody String xmlName) {
 
-	System.out.println(nm);
+	System.out.println(xmlName);
 	
-	uplataService.saljeMiControler(nm);
+	AnalitikaIzvoda ai = uplataService.odrediKojiJeXml(xmlName); // u slucaju da treba da se vrati na front analitika izvoda
 	
 	return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}

@@ -31,13 +31,13 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[a-zA-Z]{0,256}")
+	@Pattern(regexp = "[a-z A-Z 0-9]{0,256}")
 	private String nalogodavac;
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[a-zA-Z]{0,256}")
+	@Pattern(regexp = "[a-z A-Z 0-9]{0,256}")
 	private String primalac;
 	
 	@Column(unique = false, nullable = false)
@@ -49,13 +49,13 @@ public class AnalitikaIzvoda {
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[a-zA-Z0-9]{0,256}")
+	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
 	private String datumValute;
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
 	@NotEmpty
-	@Pattern(regexp = "[a-zA-Z0-9]")
+	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
 	private String datumPrijema;
 	
 	@Column(unique = false, nullable = false)
@@ -77,7 +77,6 @@ public class AnalitikaIzvoda {
 	
 	@Column(unique = false, nullable = true)
 	@Size(min=18, max=18)
-	@NotEmpty
 	@Pattern(regexp = "[0-9]{18}")
 	private String racunPoverioca;
 	
@@ -88,7 +87,6 @@ public class AnalitikaIzvoda {
 	
 	@Column(unique = false, nullable = true)
 	//@Size(max=2)
-	@NotEmpty
 	//@Pattern(regexp = "[0-9]{1,20}")
 	private String pozivNaBrojOdobrenja;
 	

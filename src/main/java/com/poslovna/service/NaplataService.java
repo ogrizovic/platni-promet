@@ -78,17 +78,17 @@ public void odrediKojiJeXml(String a){
 	if(a.equals("name1")){
 		//filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\naplata1.xml";
 		filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\naplata1.xml";
-		parser.main(filePath);
+		parser.parseXML(filePath);
 		
 	}else if(a.equals("name2")){
 		//filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\naplata2.xml";
 		filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\naplata2.xml";
-		parser.main(filePath);
+		parser.parseXML(filePath);
 		
 	}else if(a.equals("name3")){
 		//filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\naplata3.xml";
 		filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\naplata3.xml";
-		parser.main(filePath);
+		parser.parseXML(filePath);
 		
 	}else{
 		System.out.println("Ne znam kako je izabran xml koji ne postoji.");

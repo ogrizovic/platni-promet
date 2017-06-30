@@ -24,19 +24,19 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>1</td>
+				<td style="display:none;">1</td>
 				<td>123</td>
 				<td>status</td>
 			</tr>
 			<tr>
-				<td>2</td>
+				<td style="display:none;">2</td>
 				<td>123</td>
 				<td>status</td>
 			</tr>
 		</tbody>
 	</table>
 	<button type="button" id="btn-izvod">Prikazi izvod</button>
-	<div id="div-izvod" style="display: none;">
+	<div id="div-izvod">
 		<h3>Dnevni izvod</h3><br>
 		<ul>
 			<li>Datum:<input type="text" name="datum"></li>
@@ -54,7 +54,9 @@
 					<th>Svrha placanja</th>
 					<th>Primalac</th>
 					<th>Datum prijema</th>
+					<th>Mesto prijema</th>
 					<th>Datum valute</th>
+					<th>Valuta</th>
 					<th>Racun duznika</th>
 					<th>Model zaduzenja</th>
 					<th>Poziv na br zaduzenja</th>
@@ -77,6 +79,8 @@ $(function(){
 
 	var selectedIdRacuna;
 
+	//$("#table-izvod").hide();
+
 	$("#table-racuni").on("click", "tr", function(){
 		$('.selected').removeClass('selected');
 		$(this).addClass('selected');
@@ -93,7 +97,13 @@ $(function(){
 			type: 'GET',
 			url: 'http://localhost:8001/poslovna/analitikaIzvoda',
 			data: selectedIdRacuna
-		})
+		}).
+		done(function(data){
+			$("#table-izvod").show();
+			for (var i = data.length - 1; i >= 0; i--) {
+				$("#table-izvod").append("<tr><td>" + data[i].nalogodavac + "</td><td>" + data[i].svrhaPlacanja + "</td><td>" + data[i].primalac + "</td><td>" + data[i].datumPrijema + "</td><td>" + data[i].datumValute + "</td><td>" + data[i].racunDuznika + "</td><td>" + data[i].modelZaduzenja + "</td><td>" + data[i].pozivNaBrojZaduzenja + "</td><td>" + data[i].racunPoverioca + "</td><td>" + data[i].modelOdobrenja + "</td><td>" + data[i].pozivNaBrojOdobrenja + "</td><td>" + data[i].hitno + "</td><td>" + data[i].iznos);
+			}
+		});
 	});
 });
 
