@@ -103,6 +103,8 @@ public class AnalitikaIzvoda {
 	//@Pattern(regexp = "[0-9]{1}")
 	private Integer tipGreske;
 	
+	@Column(unique= false, nullable = false)
+	private boolean procesuiran;
 	
 	
 	@ManyToOne
@@ -281,6 +283,14 @@ public class AnalitikaIzvoda {
 
 	public void setValuta(Valuta valuta) {
 		this.valuta = valuta;
+	}
+
+	public boolean isProcesuiran() {
+		return procesuiran;
+	}
+
+	public void setProcesuiran(boolean procesuiran) {
+		this.procesuiran = procesuiran;
 	}
 	
 	
