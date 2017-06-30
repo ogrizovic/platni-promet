@@ -12,6 +12,7 @@
                                         <xs:element name="uplatilac" type="xs:string"/>
                                         <xs:element name="svrhaUplate" type="xs:string"/>
 										<xs:element name="primalac" type="xs:string"/>
+										<xs:element name="mesto" type="xs:string"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

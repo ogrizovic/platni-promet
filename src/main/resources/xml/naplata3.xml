@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/naplata.xsd">
         <podaci>
-            <duznik>Djoka Djokic</duznik>
+            <uplatilac>Dejo Savicevic</uplatilac>
             <svrhaUplate>Cast</svrhaUplate>
-            <primalac>Firma3</primalac>
+            <primalac>Firma1</primalac>
+			<mesto>Kragujevac</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -18,10 +19,10 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>1</iznos>
-			<brojRacuna>123123456789123462</brojRacuna>
+			<brojRacuna>111123456789123489</brojRacuna>
 			<model>99</model>
 			<pozivNaBroj>123456789</pozivNaBroj>
-			<brojRacuna2>123123456789123421</brojRacuna2>
+			<brojRacuna2>111123456789123400</brojRacuna2>
 			<model2>91</model2>
 			<pozivNaBroj2>123456777</pozivNaBroj2>
 		</podaci3>

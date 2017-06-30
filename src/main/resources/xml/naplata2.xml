@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/naplata.xsd">
         <podaci>
-            <duznik>Firma2</duznik>
+            <uplatilac>Firma2</uplatilac>
             <svrhaUplate>Pozajmica</svrhaUplate>
             <primalac>Mima Karadzic</primalac>
+			<mesto>Novi Sad</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -18,10 +19,10 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>123</iznos>
-			<brojRacuna>123123456789123462</brojRacuna>
+			<brojRacuna>111123456789123499</brojRacuna>
 			<model>32</model>
 			<pozivNaBroj>123456789</pozivNaBroj>
-			<brojRacuna2>123123456789123421</brojRacuna2>
+			<brojRacuna2>111123456789123411</brojRacuna2>
 			<model2>11</model2>
 			<pozivNaBroj2>123456777</pozivNaBroj2>
 		</podaci3>

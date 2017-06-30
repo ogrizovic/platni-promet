@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/prenos.xsd">
         <podaci>
-            <duznik>Dejo Savicevic</duznik>
+            <uplatilac>Dejo Savicevic</uplatilac>
             <svrhaUplate>Poklon</svrhaUplate>
             <primalac>Zdravko Colic</primalac>
+			<mesto>Novi Sad</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -19,10 +20,10 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>10000000</iznos>
-			<brojRacuna>123123456789123482</brojRacuna>
+			<brojRacuna>111123456789123489</brojRacuna>
 			<model>49</model>
 			<pozivNaBroj>123456789</pozivNaBroj>
-			<brojRacuna2>123123456789123400</brojRacuna2>
+			<brojRacuna2>111123456789123413</brojRacuna2>
 			<model2>21</model2>
 			<pozivNaBroj2>443456777</pozivNaBroj2>
 		</podaci3>

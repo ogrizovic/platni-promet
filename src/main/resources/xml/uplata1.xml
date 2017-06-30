@@ -6,6 +6,7 @@
             <uplatilac>Pera Peric</uplatilac>
             <svrhaUplate>Poklon</svrhaUplate>
             <primalac>Mika Mikic</primalac>
+			<mesto>Novi Sad</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -18,7 +19,7 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>1000</iznos>
-			<brojRacuna>123123456789123412</brojRacuna>
+			<brojRacuna>111123456789123412</brojRacuna>
 			<model>99</model>
 			<pozivNaBroj>123456789</pozivNaBroj>
 		</podaci3>

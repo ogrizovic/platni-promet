@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/isplata.xsd">
         <podaci>
-            <isplatilac>Firma1</isplatilac>
-            <svrhaIsplate>Usluge</svrhaIsplate>
+            <uplatilac>Firma1</uplatilac>
+            <svrhaUplate>Usluge</svrhaUplate>
             <primalac>Firma2</primalac>
+			<mesto>Novi Sad</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -19,7 +20,7 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>3333</iznos>
-			<brojRacuna>333123456789123412</brojRacuna>
+			<brojRacuna>111123456789123400</brojRacuna>
 			<model>99</model>
 			<pozivNaBroj>987654321</pozivNaBroj>
 		</podaci3>

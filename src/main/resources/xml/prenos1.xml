@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/prenos.xsd">
         <podaci>
-            <duznik>Mima Karadzic</duznik>
+            <uplatilac>Mima Karadzic</uplatilac>
             <svrhaUplate>Kazna</svrhaUplate>
             <primalac>Zdravko Colic</primalac>
+			<mesto>Beograd</mesto>
         </podaci>
 		
 		 <podaci2>
@@ -19,10 +20,10 @@
 			<sifra>14</sifra>
 			<valuta>EUR</valuta>
 			<iznos>1000</iznos>
-			<brojRacuna>123123456789123412</brojRacuna>
+			<brojRacuna>111123456789123411</brojRacuna>
 			<model>99</model>
 			<pozivNaBroj>123456789</pozivNaBroj>
-			<brojRacuna2>123123456789123411</brojRacuna2>
+			<brojRacuna2>111123456789123413</brojRacuna2>
 			<model2>91</model2>
 			<pozivNaBroj2>123456777</pozivNaBroj2>
 		</podaci3>
