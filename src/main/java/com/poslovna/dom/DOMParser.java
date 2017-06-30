@@ -117,7 +117,7 @@ public class DOMParser implements ErrorHandler {
 	
 	AnalitikaIzvoda ai = new AnalitikaIzvoda();
 	
-	public void printElement() {
+	public AnalitikaIzvoda printElement() {
 		
 		System.out.println("Prikaz sadržaja DOM stabla parsiranog XML dokumenta.");
 		Scanner scanner = new Scanner(System.in);
@@ -207,53 +207,22 @@ public class DOMParser implements ErrorHandler {
 	      			System.out.println(ai.getIznos());
 	    		}
 	    		
+	    		
+	    		
 	    		ai.setTipGreske(0);
 	    		ai.setHitno(false);
 	    		
+	    		scanner.close();
+	    		return ai;
 	    		
-	    		
-	    	} else if (choice.equals("1")) {
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-		    	System.out.println("\nPronađeno " + nodes.getLength() + " elemenata. ");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++)
-	    			printNode(nodes.item(i));
-	    		
-		    } else if (choice.equals("2")) {
-
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv atributa: ");
-		    	attrName = scanner.next();
-		    	
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-	    		System.out.println("\nPronađeno " + nodes.getLength() + " \"" + elementName + "\" elemenata.");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++) {
-	    			
-	    			element = (Element) nodes.item(i);
-	    			
-	    			if (!element.getAttribute(attrName).equals("")) {
-	    				System.out.println("\n" + (i+1) + ". element ima vrednost atributa \"" + attrName + "\": " + element.getAttribute(attrName) + ".");
-	    			} else { 
-	    				System.out.println("\n" + (i+1) + ". element \"" + elementName + "\" ne poseduje atribut \"" + attrName + "\".");
-	    			}
-	    		}
-		    	
-		    } else if (choice.equals("*")){
-		    	
 		    } else {
 		    	System.out.println("Nepoznata komanda.");
+		    	scanner.close();
+		    	return null;
 		    }
 	    
 	    
-		scanner.close();
+		
 		//System.out.println("[INFO] Kraj.");
 	}
 	
@@ -367,7 +336,7 @@ public class DOMParser implements ErrorHandler {
         System.out.println("[WARN] " + err.getMessage());
     }
 
-	public static void main(String args) {
+	public AnalitikaIzvoda parseXML(String args) {
 
 		String filePath = null;
 
@@ -389,6 +358,6 @@ public class DOMParser implements ErrorHandler {
 		handler.buildDocument(filePath);
 
 		// Prikaz sadržaja korišćenjem DOM API-ja 
-		handler.printElement();
+		return handler.printElement();
 	}
 }
