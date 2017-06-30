@@ -19,8 +19,6 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	@Autowired
 	private UplataRepo uplataRepo;
 	
-	private String kojiJeXml;
-	
 	public UplataService(){
 		
 	}
@@ -59,37 +57,35 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	}
 
 
-	public void saljeMiControler(String nm) {
-		// TODO Auto-generated method stub
-		kojiJeXml = nm;
-		odrediKojiJeXml(kojiJeXml);
-	}
-
 	public AnalitikaIzvoda analitikaIzvoda;
 	
 	DOMParser parser = new DOMParser();
 	
 	public String filePath;
 	
-	public void odrediKojiJeXml(String a){
+	public AnalitikaIzvoda odrediKojiJeXml(String a){
 		
 		if(a.equals("name1")){
-			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
-			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
-			parser.main(filePath);
+			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata1.xml";
+//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
+			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name2")){
-			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
-			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
-			parser.main(filePath);
+			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata2.xml";
+//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
+			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name3")){
-			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
-			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
-			parser.main(filePath);
+			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata3.xml";
+//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
+			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			return uplataRepo.save(ai);
 			
 		}else{
 			System.out.println("Ne znam kako je izabran xml koji ne postoji.");
+			return null;
 		}
 	}
 	
