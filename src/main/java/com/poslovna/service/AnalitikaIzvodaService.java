@@ -31,13 +31,20 @@ public class AnalitikaIzvodaService {
 		return tmp;
 	}
 	
-	public ArrayList<AnalitikaIzvoda> getAllZaRacunNeprocesuirane(int racunId){
-		Racun racun = racunRepo.findOne(racunId);
-		String brojRacuna = racun.getBrojRacuna();
-		ArrayList<AnalitikaIzvoda> tmp = analitikaRepo.findByRacunDuznikaAndProcesuiran(brojRacuna, false);
-		tmp.addAll(analitikaRepo.findByRacunPoveriocaAndProcesuiran(brojRacuna, false));
+	public ArrayList<AnalitikaIzvoda> getAllNeprocesuirane(){
+		ArrayList<AnalitikaIzvoda> tmp = analitikaRepo.findByProcesuiran(false);
+		//tmp.addAll(analitikaRepo.findByProcesuiran(false));
 		return tmp;
 	}
+	
+	public void kliring(){
+		ArrayList<AnalitikaIzvoda> tmp = analitikaRepo.findByProcesuiran(false);
+		for(int i= 0; i<tmp.size();i++){
+			tmp.get(i).setProcesuiran(true);
+		}
+		analitikaRepo.save(tmp);
+	}
+	
 
 	public AnalitikaIzvoda add(AnalitikaIzvoda ai) {
 		return analitikaRepo.save(ai);

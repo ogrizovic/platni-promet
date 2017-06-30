@@ -27,7 +27,7 @@ public class AnalitikaIzvodaCtrl {
 		// TODO Auto-generated constructor stub
 	}
 	
-	// vraca sve analitike za prosledjeni racun, koje jos nisu procesuirane
+	// vraca sve analitike za prosledjeni
 	@RequestMapping(value = "/all", 
 			method = RequestMethod.GET,
 			consumes = MediaType.TEXT_PLAIN_VALUE,
@@ -36,6 +36,27 @@ public class AnalitikaIzvodaCtrl {
 		System.out.println(racunId);
 		return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
 	}
+	
+	// vraca sve analitike koje nisu procesuirane
+		@RequestMapping(value = "/allNP", 
+				method = RequestMethod.GET,
+				consumes = MediaType.TEXT_PLAIN_VALUE,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody ArrayList<AnalitikaIzvoda> getAllNP(){
+			return analitikaService.getAllNeprocesuirane();
+		}
+		
+		// kliring
+				@RequestMapping(value = "/kliring", 
+						method = RequestMethod.GET,
+						consumes = MediaType.TEXT_PLAIN_VALUE,
+						produces = MediaType.APPLICATION_JSON_VALUE)
+				public @ResponseBody void kliring(){
+					analitikaService.kliring();
+				}
+	
+	
+	
 	
 	@RequestMapping(value = "/add", 
 			method = RequestMethod.POST, 

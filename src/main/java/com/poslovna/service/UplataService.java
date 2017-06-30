@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.poslovna.dom.DOMParser;
 import com.poslovna.model.AnalitikaIzvoda;
+import com.poslovna.model.DnevnoStanjeRacuna;
+import com.poslovna.model.Racun;
 import com.poslovna.model.users.access.AuthorizationInterceptor;
+import com.poslovna.repo.DnevnoStanjeRacunaRepo;
 import com.poslovna.repo.IsplataRepo;
 import com.poslovna.repo.NaseljenoMestoRepo;
 import com.poslovna.repo.UplataRepo;
@@ -26,7 +29,13 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	private ValutaRepo valutaRepo;
 	
 	@Autowired
+	private RacunService racunService;
+	
+	@Autowired
 	private NaseljenoMestoRepo naseljenomestoRepo;
+	
+	@Autowired
+	private DnevnoStanjeRacunaRepo dnevnoStanjeRacunaRepo;
 	
 	public UplataService(){
 		
@@ -80,6 +89,28 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
 			ai.setValuta(valutaRepo.findOne(1));
 			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
+			
+			/*Racun racun = racunService.getById(Integer.parseInt(racunId));
+			Set<DnevnoStanjeRacuna> stanja = (Set<DnevnoStanjeRacuna>) racun.getDnevnoStanje();
+			for(DnevnoStanjeRacuna dsr : stanja){
+				if(dsr.getDatumStanja().equals(datum)){
+					return dsr;
+				}
+			}*/
+			
+			/*if(dnevnoStanjeRacunaRepo.findByRacunBrojRacunaAndDatumPrijema(ai.getRacunPoverioca(), ai.getDatumPrijema())!=null){
+				DnevnoStanjeRacuna dsr1 = dnevnoStanjeRacunaRepo.findByRacunBrojRacuna(ai.getRacunPoverioca());
+				dsr1.setPrethodnoStanje(dsr1.getNovoStanje());
+				double aaa = dsr1.getNovoStanje();
+				dsr1.setNovoStanje(aaa+ai.getIznos());
+				double bbb = dsr1.getPrometNaTeret();
+				dsr1.setPrometNaTeret(bbb+ai.getIznos());
+				dnevnoStanjeRacunaRepo.save(dsr1);
+			}else{
+				DnevnoStanjeRacuna dsr2 = new DnevnoStanjeRacuna();
+				dsr2.setNovoStanje(ai.getIznos());
+				dsr2.setPrometNaTeret(ai.getIznos());
+			}*/
 			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name2")){

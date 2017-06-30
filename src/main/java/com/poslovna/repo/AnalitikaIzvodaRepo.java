@@ -12,4 +12,5 @@ public interface AnalitikaIzvodaRepo extends CrudRepository<AnalitikaIzvoda, Int
 	public ArrayList<AnalitikaIzvoda> findByRacunDuznikaAndProcesuiran(String racun, boolean procesuiran);
 	public ArrayList<AnalitikaIzvoda> findByRacunPoverioca(String racun);
 	public ArrayList<AnalitikaIzvoda> findByRacunPoveriocaAndProcesuiran(String racun, boolean procesuiran);
+	public ArrayList<AnalitikaIzvoda> findByProcesuiran(boolean procesuiran);
 }

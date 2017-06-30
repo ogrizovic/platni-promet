@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Kliring</title>
+</head>
+<body>
+Neprocesuirane transkacije:
+<br>
+<br>
+<button type="button" id="btn-prikaz">Prikaz</button>
+
+<table id="table-izvod" border="1">
+			<thead>
+				<tr>
+					<th style="display:none;">id</th>
+					<th>Nalogodavac</th>
+					<th>Svrha placanja</th>
+					<th>Primalac</th>
+					<th>Datum prijema</th>
+					<th>Mesto prijema</th>
+					<th>Datum valute</th>
+					<th>Valuta</th>
+					<th>Racun duznika</th>
+					<th>Model zaduzenja</th>
+					<th>Poziv na br zaduzenja</th>
+					<th>Racun poverioca</th>
+					<th>Model odobrenja</th>
+					<th>Poziv na br odobrenja</th>
+					<th>Hitno</th>
+					<th>Iznos</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		
+		<br>
+		<br>
+		<button type="button" id="btn-procesuiraj">Procesuiraj</button>
+		
+
+</body>
+<script type="text/javascript">
+$(function(){
+
+	$("#btn-prikaz").on("click", function(){
+		$.ajax({
+			headers:{
+				'Content-Type': 'text/plain'
+			},
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda/allNP'
+		}).
+		done(function(data){
+			$("#table-izvod").show();
+			for (var i = data.length - 1; i >= 0; i--) {
+				$("#table-izvod").append("<tr><td>" + data[i].nalogodavac + "</td><td>" + data[i].svrhaPlacanja + "</td><td>" + data[i].primalac + "</td><td>" + data[i].datumPrijema + "</td><td>" + data[i].mestoPrijema.name + "</td><td>" + data[i].datumValute + "</td><td>" + data[i].valuta.sifraValute + "</td><td>" + data[i].racunDuznika + "</td><td>" + data[i].modelZaduzenja + "</td><td>" + data[i].pozivNaBrojZaduzenja + "</td><td>" + data[i].racunPoverioca + "</td><td>" + data[i].modelOdobrenja + "</td><td>" + data[i].pozivNaBrojOdobrenja + "</td><td>" + data[i].hitno + "</td><td>" + data[i].iznos + "</td></tr>");
+			}
+		});
+	});
+	
+	$("#btn-procesuiraj").on("click", function(){
+		$.ajax({
+			headers:{
+				'Content-Type': 'text/plain'
+			},
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda/kliring'
+		}).
+		done(function(data){
+			$("#table-izvod tr").empty();
+		});
+	});
+	
+});
+</script>
+</html>
