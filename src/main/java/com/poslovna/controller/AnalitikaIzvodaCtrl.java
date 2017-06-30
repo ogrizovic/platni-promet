@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.service.AnalitikaIzvodaService;
@@ -25,9 +27,13 @@ public class AnalitikaIzvodaCtrl {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(method = RequestMethod.GET,
+	// vraca sve analitike za prosledjeni racun, koje jos nisu procesuirane
+	@RequestMapping(value = "/all", 
+			method = RequestMethod.GET,
+			consumes = MediaType.TEXT_PLAIN_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ArrayList<AnalitikaIzvoda> getAll(@RequestBody String racunId){
+	public @ResponseBody ArrayList<AnalitikaIzvoda> getAll(@RequestParam(value = "racunID") String racunId){
+		System.out.println(racunId);
 		return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
 	}
 	

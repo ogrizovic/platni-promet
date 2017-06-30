@@ -30,6 +30,14 @@ public class AnalitikaIzvodaService {
 		tmp.addAll(analitikaRepo.findByRacunPoverioca(brojRacuna));
 		return tmp;
 	}
+	
+	public ArrayList<AnalitikaIzvoda> getAllZaRacunNeprocesuirane(int racunId){
+		Racun racun = racunRepo.findOne(racunId);
+		String brojRacuna = racun.getBrojRacuna();
+		ArrayList<AnalitikaIzvoda> tmp = analitikaRepo.findByRacunDuznikaAndProcesuiran(brojRacuna, false);
+		tmp.addAll(analitikaRepo.findByRacunPoveriocaAndProcesuiran(brojRacuna, false));
+		return tmp;
+	}
 
 	public AnalitikaIzvoda add(AnalitikaIzvoda ai) {
 		return analitikaRepo.save(ai);

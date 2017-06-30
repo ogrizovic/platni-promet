@@ -27,7 +27,7 @@ public class Valuta {
 	@Pattern(regexp = "[A-Z][a-z]{,30}")
 	private String nazivValute;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private boolean domicilna;
 	
 	@ManyToOne

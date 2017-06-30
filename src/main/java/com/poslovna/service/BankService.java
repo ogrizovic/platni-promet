@@ -1,11 +1,14 @@
 package com.poslovna.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poslovna.model.Banka;
+import com.poslovna.model.Racun;
 import com.poslovna.repo.BankRepo;
 import com.poslovna.service.interfaces.CrudService;
 
@@ -30,8 +33,8 @@ public class BankService implements CrudService<Banka>{
 	}
 
 	@Override
-	public Set<Banka> getAll() {
-		return (Set<Banka>) bankRepo.findAll();
+	public Collection<Banka> getAll() {
+		return (ArrayList<Banka>) bankRepo.findAll();
 	}
 
 	@Override

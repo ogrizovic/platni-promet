@@ -18,21 +18,13 @@
 		<thead>
 			<tr>
 				<th style="display:none;">id</th>
+				<th>Klijent</th>
 				<th>Broj racuna</th>
 				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td style="display:none;">1</td>
-				<td>123</td>
-				<td>status</td>
-			</tr>
-			<tr>
-				<td style="display:none;">2</td>
-				<td>123</td>
-				<td>status</td>
-			</tr>
+			
 		</tbody>
 	</table>
 	<button type="button" id="btn-izvod">Prikazi izvod</button>
@@ -79,7 +71,9 @@ $(function(){
 
 	var selectedIdRacuna;
 
-	//$("#table-izvod").hide();
+	$("#table-izvod").hide();
+
+	fillTableRacuni();
 
 	$("#table-racuni").on("click", "tr", function(){
 		$('.selected').removeClass('selected');
@@ -95,16 +89,28 @@ $(function(){
 				'Content-Type': 'text/plain'
 			},
 			type: 'GET',
-			url: 'http://localhost:8001/poslovna/analitikaIzvoda',
-			data: selectedIdRacuna
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda/all?racunID=' + selectedIdRacuna
 		}).
 		done(function(data){
 			$("#table-izvod").show();
 			for (var i = data.length - 1; i >= 0; i--) {
-				$("#table-izvod").append("<tr><td>" + data[i].nalogodavac + "</td><td>" + data[i].svrhaPlacanja + "</td><td>" + data[i].primalac + "</td><td>" + data[i].datumPrijema + "</td><td>" + data[i].datumValute + "</td><td>" + data[i].racunDuznika + "</td><td>" + data[i].modelZaduzenja + "</td><td>" + data[i].pozivNaBrojZaduzenja + "</td><td>" + data[i].racunPoverioca + "</td><td>" + data[i].modelOdobrenja + "</td><td>" + data[i].pozivNaBrojOdobrenja + "</td><td>" + data[i].hitno + "</td><td>" + data[i].iznos);
+				$("#table-izvod").append("<tr><td>" + data[i].nalogodavac + "</td><td>" + data[i].svrhaPlacanja + "</td><td>" + data[i].primalac + "</td><td>" + data[i].datumPrijema + "</td><td>" + data[i].mestoPrijema.name + "</td><td>" + data[i].datumValute + "</td><td>" + data[i].valuta.sifraValute + "</td><td>" + data[i].racunDuznika + "</td><td>" + data[i].modelZaduzenja + "</td><td>" + data[i].pozivNaBrojZaduzenja + "</td><td>" + data[i].racunPoverioca + "</td><td>" + data[i].modelOdobrenja + "</td><td>" + data[i].pozivNaBrojOdobrenja + "</td><td>" + data[i].hitno + "</td><td>" + data[i].iznos + "</td></tr>");
 			}
 		});
 	});
+
+
+	function fillTableRacuni(){
+		$.ajax({
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/racuni'
+		}).
+		done(function(data){
+			for (var i = data.length - 1; i >= 0; i--) {
+				$("#table-racuni").append("<tr><td style='display:none;'>" + data[i].id + "</td><td>" + data[i].klijent.ime + "</td><td>" + data[i].brojRacuna + "</td><td>" + data[i].status + "</td></tr>");
+			}
+		});
+	}
 });
 
 </script>
