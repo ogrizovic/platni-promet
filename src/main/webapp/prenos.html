@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <title>Prenos</title>
 </head>
 <body>
@@ -84,6 +85,12 @@ Datum prijema:
 <br>
 
  <button type="button" name="gotovo"  id="dugme3">Gotovo</button> 
+ 
+  <select name="select" id="select">
+  <option value="prenos1" name="name1" selected>prenos1</option>
+  <option value="prenos2" name="name2">prenos2</option>
+  <option value="prenos3" name="name3">prenos3</option>
+</select>
 
 </form>
 
@@ -91,23 +98,31 @@ Datum prijema:
 
 <script type="text/javascript">
 
-$("#dugme3").on("click", function(e){
-	var data = {};
-	$("#forma3").serializeArray().map(function(x){
-		data[x.name] = x.value;
-	}); 
-	var jsonD = JSON.stringify(data);
-	
-	$.ajax({
-		headers:{
-			'Content-Type':'application/json'
-		},
-		type: 'POST',
-		url: 'http://localhost:8001/poslovna/prenos',
-		data: jsonD
-	})
-	
-}
+$(function() {
+	var izabranoIme;
+    $("#select").change(function(){
+    	izabranoIme = $('option:selected', this).attr('name');
+    //$('#name').val("test");
+    console.log(izabranoIme);
+ });
+    
+    $("#dugme3").on("click", function(){
+    	//var zaSlanje = JSON.stringify(izabranoIme);
+    	//console.log(zaSlanje);
+    	
+    	$.ajax({  
+    		headers:{
+    			'Content-Type':'text/plain'
+    		},
+    		type: "POST",  
+    		 url: "http://localhost:8001/poslovna/prenosCtrl", 
+    		 data: izabranoIme
+    		})
+    		.done(alert("Uspesno izvrseno!"));
+    	
+    });
+    
+});
 </script>
 
 </html>

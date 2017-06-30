@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rad xmlns="http://www.ftn.uns.ac.rs/zavrsni_rad"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/uplata.xsd">
+        <podaci>
+            <uplatilac>Firma1</uplatilac>
+            <svrhaUplate>Dug</svrhaUplate>
+            <primalac>Ana Anic</primalac>
+        </podaci>
+		
+		 <podaci2>
+            <potpis>jmbg1</potpis>
+            <datumPrijema>2017-06-24</datumPrijema>
+            <datumValute>2017-06-24</datumValute>
+        </podaci2>
+		
+		<podaci3>
+			<sifra>14</sifra>
+			<valuta>EUR</valuta>
+			<iznos>4321</iznos>
+			<brojRacuna>123123456789123401</brojRacuna>
+			<model>99</model>
+			<pozivNaBroj>123456789</pozivNaBroj>
+		</podaci3>
+  
+  
+</rad>

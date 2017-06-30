@@ -1,0 +1,14 @@
+nalogodavac - 256 slova
+primalac - 256 slova
+svrhaplacanja - 256 slova
+datumValute - yyyy-mm-dd
+datumPrijema - yyyy-mm-dd
+racunDuznika - 18 brojeva
+modelZaduzenja - 2 broja
+pozivNaBrojZaduzenja - 20 brojeva
+racunPoverioca - 18 brojeva
+modelOdobrenja - 2 broja
+pozivNaBrojOdobrenja - 20 brojeva
+iznos - broj
+hitno - boolean
+tipGreske - 0

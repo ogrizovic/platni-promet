@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rad xmlns="http://www.ftn.uns.ac.rs/zavrsni_rad"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/naplata.xsd">
+        <podaci>
+            <duznik>Maja Majic</duznik>
+            <svrhaUplate>Pozajmica</svrhaUplate>
+            <primalac>Djoka Djokic</primalac>
+        </podaci>
+		
+		 <podaci2>
+            <potpis>jmbg1</potpis>
+            <datumPrijema>2017-06-24</datumPrijema>
+            <datumValute>2017-06-24</datumValute>
+        </podaci2>
+		
+		<podaci3>
+			<sifra>14</sifra>
+			<valuta>EUR</valuta>
+			<iznos>33</iznos>
+			<brojRacuna>123123456789123462</brojRacuna>
+			<model>99</model>
+			<pozivNaBroj>123456789</pozivNaBroj>
+			<brojRacuna2>123123456789123421</brojRacuna2>
+			<model2>91</model2>
+			<pozivNaBroj2>123456777</pozivNaBroj2>
+		</podaci3>
+  
+  
+</rad>

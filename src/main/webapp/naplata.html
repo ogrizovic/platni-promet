@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <title>Naplata</title>
 </head>
 <body>
@@ -78,29 +79,44 @@ Datum prijema:
 <br>
 
  <button type="button" name="gotovo"  id="dugme4">Gotovo</button> 
+ 
+  <select name="select" id="select">
+  <option value="naplata1" name="name1" selected>naplata1</option>
+  <option value="naplata2" name="name2">naplata2</option>
+  <option value="naplata3" name="name3">naplata3</option>
+</select>
+ 
 
 </form>
 </body>
 
 <script type="text/javascript">
 
-$("#dugme4").on("click", function(e){
-	var data = {};
-	$("#forma4").serializeArray().map(function(x){
-		data[x.name] = x.value;
-	}); 
-	var jsonD = JSON.stringify(data);
-	
-	$.ajax({
-		headers:{
-			'Content-Type':'application/json'
-		},
-		type: 'POST',
-		url: 'http://localhost:8001/poslovna/naplata',
-		data: jsonD
-	})
-	
-}
+$(function() {
+	var izabranoIme;
+    $("#select").change(function(){
+    	izabranoIme = $('option:selected', this).attr('name');
+    //$('#name').val("test");
+    console.log(izabranoIme);
+ });
+    
+    $("#dugme4").on("click", function(){
+    	//var zaSlanje = JSON.stringify(izabranoIme);
+    	//console.log(zaSlanje);
+    	
+    	$.ajax({  
+    		headers:{
+    			'Content-Type':'text/plain'
+    		},
+    		type: "POST",  
+    		 url: "http://localhost:8001/poslovna/naplataCtrl", 
+    		 data: izabranoIme
+    		})
+    		.done(alert("Uspesno izvrseno!"));
+    	
+    });
+    
+});
 </script>
 
 </html>

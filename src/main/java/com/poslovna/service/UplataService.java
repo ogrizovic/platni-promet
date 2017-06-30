@@ -74,18 +74,20 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	public void odrediKojiJeXml(String a){
 		
 		if(a.equals("name1")){
-			System.out.println("11111111111111111111111111111");
+			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
 			parser.main(filePath);
 			
 		}else if(a.equals("name2")){
-			System.out.println("22222222222222222222222222");
+			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
 			parser.main(filePath);
+			
 		}else if(a.equals("name3")){
-			System.out.println("333333333333333333333333333333");
+			//filePath = "D:\workspace_4\poslovna\src\main\resources\";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
 			parser.main(filePath);
+			
 		}else{
 			System.out.println("Ne znam kako je izabran xml koji ne postoji.");
 		}

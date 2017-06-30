@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rad xmlns="http://www.ftn.uns.ac.rs/zavrsni_rad"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/uplata.xsd">
+        <podaci>
+            <uplatilac>Pera Peric</uplatilac>
+            <svrhaUplate>Poklon</svrhaUplate>
+            <primalac>Mika Mikic</primalac>
+        </podaci>
+		
+		 <podaci2>
+            <potpis>jmbg1</potpis>
+            <datumPrijema>2017-06-24</datumPrijema>
+            <datumValute>2017-06-24</datumValute>
+        </podaci2>
+		
+		<podaci3>
+			<sifra>14</sifra>
+			<valuta>EUR</valuta>
+			<iznos>1000</iznos>
+			<brojRacuna>123123456789123412</brojRacuna>
+			<model>99</model>
+			<pozivNaBroj>123456789</pozivNaBroj>
+		</podaci3>
+  
+  
+</rad>

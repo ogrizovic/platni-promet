@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ftn.uns.ac.rs/zavrsni_rad"
+    targetNamespace="http://www.ftn.uns.ac.rs/zavrsni_rad" elementFormDefault="qualified">
+
+    <xs:element name="rad">
+       
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="podaci">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="duznik" type="xs:string"/>
+                                        <xs:element name="svrhaUplate" type="xs:string"/>
+										<xs:element name="primalac" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="podaci2">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="potpis" type="xs:string"/>
+                                        <xs:element name="datumPrijema" type="xs:string"/>
+										<xs:element name="datumValute" type="xs:string"/>
+										<xs:element name="hitno" type="xs:boolean"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+							
+							 <xs:element name="podaci3">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        
+										<xs:element name="sifra">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="99"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										
+										
+
+										<xs:element name="valuta">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="RSD"/>
+													<xs:enumeration value="EUR"/>
+													<xs:enumeration value="RUB"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+
+										<xs:element name="iznos">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="99999999"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+
+										<xs:element  name="brojRacuna">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[0-9]{18}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										
+										<xs:element name="model">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="99"/>
+												</xs:restriction>										
+											</xs:simpleType>
+										</xs:element>
+										
+										<xs:element  name="pozivNaBroj">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[0-9]{9}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										
+										<xs:element  name="brojRacuna2">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[0-9]{18}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										
+										<xs:element name="model2">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="99"/>
+												</xs:restriction>										
+											</xs:simpleType>
+										</xs:element>
+										
+										<xs:element  name="pozivNaBroj2">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[0-9]{9}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										
+  
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+							
+							
+							
+							
+                        </xs:sequence>
+                    </xs:complexType>
+					
+    </xs:element>
+   
+</xs:schema>
