@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import com.poslovna.dom.DOMParser;
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.model.users.access.AuthorizationInterceptor;
+import com.poslovna.repo.IsplataRepo;
+import com.poslovna.repo.NaseljenoMestoRepo;
 import com.poslovna.repo.UplataRepo;
+import com.poslovna.repo.ValutaRepo;
 import com.poslovna.service.interfaces.CrudService;
 
 @Service
@@ -18,6 +21,12 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	
 	@Autowired
 	private UplataRepo uplataRepo;
+	
+	@Autowired
+	private ValutaRepo valutaRepo;
+	
+	@Autowired
+	private NaseljenoMestoRepo naseljenomestoRepo;
 	
 	public UplataService(){
 		
@@ -69,18 +78,24 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 //			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata1.xml";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			ai.setValuta(valutaRepo.findOne(1));
+			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
 			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name2")){
 //			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata2.xml";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata2.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			ai.setValuta(valutaRepo.findOne(1));
+			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
 			return uplataRepo.save(ai);
 			
 		}else if(a.equals("name3")){
 //			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata3.xml";
 			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata3.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
+			ai.setValuta(valutaRepo.findOne(1));
+			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
 			return uplataRepo.save(ai);
 			
 		}else{
