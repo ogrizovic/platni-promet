@@ -27,11 +27,14 @@
 			
 		</tbody>
 	</table>
+	<select>
+		<option value="2017-06-24" id="select-datum">2017-06-24</option>
+	</select>
 	<button type="button" id="btn-izvod">Prikazi izvod</button>
 	<div id="div-izvod">
 		<h3>Dnevni izvod</h3><br>
 		<ul>
-			<li>Datum:<input type="text" name="datum"></li>
+			<li>Datum:<input type="text" id="datum"></li>
 			<li>Prethodno stanje:<input type="text" id="prethodno-stanje"></li>
 			<li>Promet na teret:<input type="text" id="na-teret"></li>
 			<li>Promet u korist:<input type="text" id="u-korist"></li>
@@ -84,6 +87,8 @@ $(function(){
 	});
 
 	$("#btn-izvod").on("click", function(){
+		var datumStanja = $("#select-datum").val();
+
 		$.ajax({
 			headers:{
 				'Content-Type': 'text/plain'
@@ -97,6 +102,18 @@ $(function(){
 				$("#table-izvod").append("<tr><td>" + data[i].nalogodavac + "</td><td>" + data[i].svrhaPlacanja + "</td><td>" + data[i].primalac + "</td><td>" + data[i].datumPrijema + "</td><td>" + data[i].mestoPrijema.name + "</td><td>" + data[i].datumValute + "</td><td>" + data[i].valuta.sifraValute + "</td><td>" + data[i].racunDuznika + "</td><td>" + data[i].modelZaduzenja + "</td><td>" + data[i].pozivNaBrojZaduzenja + "</td><td>" + data[i].racunPoverioca + "</td><td>" + data[i].modelOdobrenja + "</td><td>" + data[i].pozivNaBrojOdobrenja + "</td><td>" + data[i].hitno + "</td><td>" + data[i].iznos + "</td></tr>");
 			}
 		});
+
+		$.ajax({
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/racuni/stanje?racunId=' + selectedIdRacuna + '&datum=' + datumStanja
+		}).
+		done(function(data){
+			$("#datum").val(data.datumStanja);
+			$("#prethodno-stanje").val(data.prethodnoStanje);
+			$("#na-teret").val(data.prometNaTeret);
+			$("#u-korist").val(data.prometUKorist);
+			$("#novo-stanje").val(data.novoStanje);
+		});
 	});
 
 
@@ -107,7 +124,7 @@ $(function(){
 		}).
 		done(function(data){
 			for (var i = data.length - 1; i >= 0; i--) {
-				$("#table-racuni").append("<tr><td style='display:none;'>" + data[i].id + "</td><td>" + data[i].klijent.ime + "</td><td>" + data[i].brojRacuna + "</td><td>" + data[i].status + "</td></tr>");
+				$("#table-racuni").append("<tr><td style='display:none;'>" + data[i].id + "</td><td>" + data[i].klijent + "</td><td>" + data[i].brojRacuna + "</td><td>" + data[i].status + "</td></tr>");
 			}
 		});
 	}

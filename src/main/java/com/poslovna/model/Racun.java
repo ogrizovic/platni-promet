@@ -1,6 +1,9 @@
 package com.poslovna.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +19,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.IndexColumn;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.poslovna.model.users.Klijent;
 
 @Entity
@@ -39,20 +46,25 @@ public class Racun {
 	
 
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="klijent_id")
 	private Klijent klijent;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="banka_id")
 	private Banka banka;
 	
-	@OneToMany(mappedBy = "racun", cascade = {CascadeType.ALL})
-	private Collection<DnevnoStanjeRacuna> dnevnoStanje;
+	@OneToMany(mappedBy = "racun", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	//@JsonManagedReference
+	private Set<DnevnoStanjeRacuna> dnevnoStanje = new HashSet<DnevnoStanjeRacuna>();
 	
 	@OneToMany(mappedBy = "racun", cascade = {CascadeType.ALL})
+	@JsonManagedReference
 	private Collection<ZatvaranjeRacuna> zatvaranjaRacuna;
 	
 	@ManyToOne
+	@JsonBackReference
 	private Valuta valuta;
 	
 	
@@ -106,7 +118,7 @@ public class Racun {
 	}
 
 	public void setDnevnoStanje(Collection<DnevnoStanjeRacuna> dnevnoStanje) {
-		this.dnevnoStanje = dnevnoStanje;
+		this.dnevnoStanje = (Set<DnevnoStanjeRacuna>) dnevnoStanje;
 	}
 
 	public Collection<ZatvaranjeRacuna> getZatvaranjaRacuna() {

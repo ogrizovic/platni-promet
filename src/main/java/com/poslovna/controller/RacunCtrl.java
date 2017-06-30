@@ -1,6 +1,8 @@
 package com.poslovna.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poslovna.model.DnevnoStanjeRacuna;
 import com.poslovna.model.Racun;
 import com.poslovna.model.Valuta;
 import com.poslovna.model.users.Client;
@@ -25,7 +30,7 @@ import com.poslovna.service.KlijentService;
 import com.poslovna.service.RacunService;
 
 @Controller
-@RequestMapping(value = "/racun")
+@RequestMapping(value = "/racuni")
 public class RacunCtrl {
 
 	@Autowired
@@ -66,5 +71,26 @@ public class RacunCtrl {
 		klijentService.update(klijent);
 		
 		return new ResponseEntity<Racun>(racun, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<Racun> getAll(){
+		return (ArrayList<Racun>) racunService.getAll();
+	}
+	
+	@RequestMapping(value = "/stanje", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody DnevnoStanjeRacuna getStanjeRacuna(@RequestParam(value = "racunId") String racunId,
+			@RequestParam(value = "datum") String datum){
+		Racun racun = racunService.getById(Integer.parseInt(racunId));
+		Set<DnevnoStanjeRacuna> stanja = (Set<DnevnoStanjeRacuna>) racun.getDnevnoStanje();
+		for(DnevnoStanjeRacuna dsr : stanja){
+			if(dsr.getDatumStanja().equals(datum)){
+				return dsr;
+			}
+		}
+		return null;
 	}
 }

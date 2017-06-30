@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
@@ -32,11 +33,11 @@ public class DnevnoStanjeRacuna {
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name = "datumStanja", columnDefinition = "DATE")
-	@Temporal(TemporalType.DATE)
-	@JsonSerialize(using = DateSerializer.class)
-	@JsonDeserialize(using = DateDeserializer.class)
-	private Date datumStanja;
+	@Column(unique = false, nullable = false)
+	@Size(max = 256)
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
+	private String datumStanja;
 	
 	@Column(unique = false, nullable = true)
 	@Size(max=15)
@@ -64,6 +65,7 @@ public class DnevnoStanjeRacuna {
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="racun_id")
 	private Racun racun;
 	
@@ -82,11 +84,11 @@ public class DnevnoStanjeRacuna {
 		this.id = id;
 	}
 
-	public Date getDatumStanja() {
+	public String getDatumStanja() {
 		return datumStanja;
 	}
 
-	public void setDatumStanja(Date datumStanja) {
+	public void setDatumStanja(String datumStanja) {
 		this.datumStanja = datumStanja;
 	}
 

@@ -1,5 +1,7 @@
 package com.poslovna.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.Set;
 
@@ -46,8 +48,8 @@ public class RacunService implements CrudService<Racun>{
 	}
 
 	@Override
-	public Set<Racun> getAll() {
-		return (Set<Racun>) racunRepo.findAll();
+	public Collection<Racun> getAll() {
+		return racunRepo.findAll();
 	}
 
 	@Override

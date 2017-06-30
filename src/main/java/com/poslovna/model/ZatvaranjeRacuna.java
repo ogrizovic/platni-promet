@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
@@ -41,6 +42,7 @@ public class ZatvaranjeRacuna {
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="racun_id")
 	private Racun racun;
 	
