@@ -36,6 +36,12 @@ public class RacunService implements CrudService<Racun>{
 	public DnevnoStanjeRacuna stanje(String brojRacuna){
 		return stanjeRepo.findByRacunBrojRacuna(brojRacuna);
 	}
+	
+	
+	public Racun findByBrojRacuna(String s){
+		return racunRepo.findByBrojRacuna(s);
+	}
+	
 
 	@Override
 	public Racun add(Racun t) {

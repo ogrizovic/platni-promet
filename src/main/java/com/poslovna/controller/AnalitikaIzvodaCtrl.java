@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poslovna.dom.DOMWriter;
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.service.AnalitikaIzvodaService;
 
@@ -36,6 +37,24 @@ public class AnalitikaIzvodaCtrl {
 		System.out.println(racunId);
 		return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
 	}
+	
+	
+	// vraca sve analitike za prosledjeni
+		@RequestMapping(value = "/allxml", 
+				method = RequestMethod.GET,
+				consumes = MediaType.TEXT_PLAIN_VALUE,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody ArrayList<AnalitikaIzvoda> getAllxml(@RequestParam(value = "racunID") String racunId){
+			System.out.println(racunId);
+			System.out.println("JSAYGDUHASYYGSAU : " + analitikaService.getAllZaRacun(Integer.parseInt(racunId)));
+			ArrayList<AnalitikaIzvoda>  aaa = new ArrayList<>(analitikaService.getAllZaRacun(Integer.parseInt(racunId)));
+			AnalitikaIzvoda aa = aaa.get(0);
+			DOMWriter a = new DOMWriter();
+			a.main();
+			return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
+		}
+	
+	
 	
 	// vraca sve analitike koje nisu procesuirane
 		@RequestMapping(value = "/allNP", 

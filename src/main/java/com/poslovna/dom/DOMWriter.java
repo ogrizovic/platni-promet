@@ -1,5 +1,7 @@
 package com.poslovna.dom;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,6 +18,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.poslovna.model.AnalitikaIzvoda;
+
 /**
  * 
  * Primer demonstrira metode API-ja za potrebe programskog kreiranja DOM stabla. 
@@ -25,7 +29,7 @@ import org.w3c.dom.Element;
  */
 public class DOMWriter {
 
-	private static String TARGET_NAMESPACE = "http://www.ftn.uns.ac.rs/zavrsni_rad";
+	private static String TARGET_NAMESPACE = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xsd\\uplata2";
 
 	private static String XSI_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
 	
@@ -65,73 +69,78 @@ public class DOMWriter {
 	 * Generates sample document object model 
 	 * programmatically using DOM API methods. 
 	 */
-	public void generateDOM() {
+	public void generateDOM(AnalitikaIzvoda b) {
 		
 		// Kreiranje i postavljanje korenskog elementa
 		Element rad = document.createElementNS(TARGET_NAMESPACE, "rad");
 		document.appendChild(rad);
 		
-		rad.setAttributeNS(XSI_NAMESPACE, "xsi:schemaLocation", "http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/zavrsni_rad.xsd");
-		rad.setAttribute("vrsta_rada", "Diplomski rad");		
+		//rad.setAttributeNS(XSI_NAMESPACE, "xsi:schemaLocation", "http://www.ftn.uns.ac.rs/zavrsni_rad ../xsd/zavrsni_rad.xsd");
+		//rad.setAttribute("vrsta_rada", "Diplomski rad");		
 		
-		Element naslovnaStrana = document.createElementNS(TARGET_NAMESPACE, "naslovna_strana");
-		rad.appendChild(naslovnaStrana);
+		//Element naslovnaStrana = document.createElementNS(TARGET_NAMESPACE, "naslovna_strana");
+		//rad.appendChild(naslovnaStrana);
 		
-		Element institucija = document.createElementNS(TARGET_NAMESPACE, "institucija");
-		naslovnaStrana.appendChild(institucija);
+		Element podaci = document.createElementNS(TARGET_NAMESPACE, "podaci");
+		rad.appendChild(podaci);
 		
-		Element univerzitet = document.createElementNS(TARGET_NAMESPACE, "univerzitet");
-		univerzitet.appendChild(document.createTextNode("Univerzitet u Novom Sadu"));
-		institucija.appendChild(univerzitet);
+		Element uplatilac = document.createElementNS(TARGET_NAMESPACE, "uplatilac");
+		uplatilac.appendChild(document.createTextNode(b.getNalogodavac()));
+		podaci.appendChild(uplatilac);
 
-		Element fakultet = document.createElementNS(TARGET_NAMESPACE, "fakultet");
-		fakultet.appendChild(document.createTextNode("Fakultet tehničkih nauka"));
-		institucija.appendChild(fakultet);
+		Element svrhaUplate = document.createElementNS(TARGET_NAMESPACE, "svrhaUplate");
+		svrhaUplate.appendChild(document.createTextNode(b.getSvrhaPlacanja()));
+		podaci.appendChild(svrhaUplate);
 		
-		Element departman = document.createElementNS(TARGET_NAMESPACE, "departman");
-		departman.appendChild(document.createTextNode("Računarstvo i automatika"));
-		institucija.appendChild(departman);
+		Element primalac = document.createElementNS(TARGET_NAMESPACE, "primalac");
+		primalac.appendChild(document.createTextNode(b.getPrimalac()));
+		podaci.appendChild(primalac);
 
-		Element katedra = document.createElementNS(TARGET_NAMESPACE, "katedra");
-		katedra.appendChild(document.createTextNode("Katedra za informatiku"));
-		institucija.appendChild(katedra);
+		Element mesto = document.createElementNS(TARGET_NAMESPACE, "mesto");
+		mesto.appendChild(document.createTextNode("Novi Sad"));
+		podaci.appendChild(mesto);
 		
-		Element autor = document.createElementNS(TARGET_NAMESPACE, "autor");
-		naslovnaStrana.appendChild(autor);
+		Element podaci2 = document.createElementNS(TARGET_NAMESPACE, "podaci2");
+		rad.appendChild(podaci2);
 		
-		Element ime = document.createElementNS(TARGET_NAMESPACE, "ime");
-		ime.appendChild(document.createTextNode("Petar"));
-		autor.appendChild(ime);
+		Element potpis = document.createElementNS(TARGET_NAMESPACE, "potpis");
+		potpis.appendChild(document.createTextNode("jmbg1"));
+		podaci2.appendChild(potpis);
 		
-		Element prezime = document.createElementNS(TARGET_NAMESPACE, "prezime");
-		prezime.appendChild(document.createTextNode("Petrović"));
-		autor.appendChild(prezime);
+		Element datumPrijema = document.createElementNS(TARGET_NAMESPACE, "datumPrijema");
+		datumPrijema.appendChild(document.createTextNode(b.getDatumPrijema()));
+		podaci2.appendChild(datumPrijema);
 		
-		Element broj_indeksa = document.createElementNS(TARGET_NAMESPACE, "broj_indeksa");
-		broj_indeksa.appendChild(document.createTextNode("RA 1/2012"));
-		autor.appendChild(broj_indeksa);
+		Element datumvalute = document.createElementNS(TARGET_NAMESPACE, "datumvalute");
+		datumvalute.appendChild(document.createTextNode(b.getDatumValute()));
+		podaci2.appendChild(datumvalute);
 		
-		Element temaSrpski = document.createElementNS(TARGET_NAMESPACE, "tema_rada");
-		temaSrpski.setAttribute("jezik", "srpski");
-		temaSrpski.appendChild(document.createTextNode("Implementacija podsistema banke u okviru sistema platnog prometa."));
-		naslovnaStrana.appendChild(temaSrpski);
+		Element podaci3 = document.createElementNS(TARGET_NAMESPACE, "podaci3");
+		rad.appendChild(podaci3);
 
-		Element temaEngleski = document.createElementNS(TARGET_NAMESPACE, "tema_rada");
-		temaEngleski.setAttribute("jezik", "engleski");
-		temaEngleski.appendChild(document.createTextNode("Implementation of banking subsystem in an electronic payment system."));
-		naslovnaStrana.appendChild(temaEngleski);
+		Element sifra = document.createElementNS(TARGET_NAMESPACE, "sifra");
+		sifra.appendChild(document.createTextNode("22"));
+		podaci3.appendChild(sifra);
 		
-		Element nivoStudija = document.createElementNS(TARGET_NAMESPACE, "nivo_studija");
-		nivoStudija.appendChild(document.createTextNode("OAS"));
-		naslovnaStrana.appendChild(nivoStudija);
+		Element valuta = document.createElementNS(TARGET_NAMESPACE, "valuta");
+		valuta.appendChild(document.createTextNode("EUR"));
+		podaci3.appendChild(valuta);
+
+		Element iznos = document.createElementNS(TARGET_NAMESPACE, "iznos");
+		iznos.appendChild(document.createTextNode("12321"));
+		podaci3.appendChild(iznos);
 		
-		Element sadrzaj = document.createElementNS(TARGET_NAMESPACE, "sadrzaj");
-		sadrzaj.appendChild(document.createComment("Generisati \"sadrzaj\" analogno."));
-		rad.appendChild(sadrzaj);
+		Element brojRacuna = document.createElementNS(TARGET_NAMESPACE, "brojRacuna");
+		brojRacuna.appendChild(document.createTextNode(b.getRacunPoverioca()));
+		podaci3.appendChild(brojRacuna);
 		
-		Element poglavlja = document.createElementNS(TARGET_NAMESPACE, "poglavlja");
-		poglavlja.appendChild(document.createComment("Generisati \"poglavlja\" analogno."));
-		rad.appendChild(poglavlja);
+		Element model = document.createElementNS(TARGET_NAMESPACE, "model");
+		model.appendChild(document.createTextNode("11"));
+		podaci3.appendChild(model);
+		
+		Element pozivNaBroj = document.createElementNS(TARGET_NAMESPACE, "pozivNaBroj");
+		pozivNaBroj.appendChild(document.createTextNode("987654321"));
+		podaci3.appendChild(pozivNaBroj);
 		
 	}
 	
@@ -166,39 +175,42 @@ public class DOMWriter {
 		}
 	}
 	
-	public static void main(String args[]) {
+	static AnalitikaIzvoda www  = new AnalitikaIzvoda();
+	
+	public static void main() {
 
 		String filePath = null;
 
 		System.out.println("[INFO] DOM Parser");
-
-		if (args.length != 1) {
-
-			filePath = "data/xml/zavrsni_rad.xml";
-
-			System.out.println("[INFO] No input file, using default \""	+ filePath + "\"");
-
-		} else {
-			filePath = args[0];
-		}
 
 		DOMWriter handler = new DOMWriter();
 
 		// Kreiranje Document čvora
 		handler.createDocument();
 
+		
+		www.setDatumPrijema("24-06-2017");
+		www.setNalogodavac("Pera Peric");
+		www.setPrimalac("Mika Mikic");
+		www.setSvrhaPlacanja("Poklon");
+		www.setDatumValute("24-06-2017");
+		www.setRacunPoverioca("111123456789123412");
+		
+		
+		
+		
 		// Generisanje DOM stabla
-		handler.generateDOM();
+		handler.generateDOM(www);
 		
 		// Prikaz sadržaja (isprobati sa FileOutputStream-om)
 		handler.transform(System.out);
 		
-		/*
+		
 		try {
-			handler.transform(new FileOutputStream("data/xml/zavrsni_rad_out_3.xml"));
+			handler.transform(new FileOutputStream("C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\test\\aaa.xml"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		*/
+		
 	}
 }

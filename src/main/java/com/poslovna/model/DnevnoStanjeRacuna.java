@@ -35,31 +35,31 @@ public class DnevnoStanjeRacuna {
 	
 	@Column(unique = false, nullable = false)
 	@Size(max = 256)
-	@NotEmpty
+	//@NotEmpty
 	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
 	private String datumStanja;
 	
 	@Column(unique = false, nullable = true)
 	@Size(max=15)
-	@NotEmpty
+	//@NotEmpty
 	@Pattern(regexp = "^[0-9]+([\\,\\.][0-9]{1,})?$")
 	private double prethodnoStanje;
 	
 	@Column(unique = false, nullable = true)
 	@Size(max=15)
-	@NotEmpty
+	//@NotEmpty
 	@Pattern(regexp = "^[0-9]+([\\,\\.][0-9]{1,})?$")
 	private double prometNaTeret;
 	
 	@Column(unique = false, nullable = true)
 	@Size(max=15)
-	@NotEmpty
+	//@NotEmpty
 	@Pattern(regexp = "^[0-9]+([\\,\\.][0-9]{1,})?$")
 	private double prometUKorist;
 	
 	@Column(unique = false, nullable = true)
 	@Size(max=15)
-	@NotEmpty
+	//@NotEmpty
 	@Pattern(regexp = "^[0-9]+([\\,\\.][0-9]{1,})?$")
 	private double novoStanje;
 	
@@ -96,6 +96,7 @@ public class DnevnoStanjeRacuna {
 		return prethodnoStanje;
 	}
 
+	
 	public void setPrethodnoStanje(double prethodnoStanje) {
 		this.prethodnoStanje = prethodnoStanje;
 	}

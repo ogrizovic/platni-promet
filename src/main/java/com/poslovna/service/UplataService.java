@@ -81,6 +81,8 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	
 	public String filePath;
 	
+	private int qwerty = 0;
+	
 	public AnalitikaIzvoda odrediKojiJeXml(String a){
 		
 		if(a.equals("name1")){
@@ -90,13 +92,29 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 			ai.setValuta(valutaRepo.findOne(1));
 			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
 			
-			/*Racun racun = racunService.getById(Integer.parseInt(racunId));
+			/*Racun racun = racunService.findByBrojRacuna(ai.getRacunDuznika());
 			Set<DnevnoStanjeRacuna> stanja = (Set<DnevnoStanjeRacuna>) racun.getDnevnoStanje();
-			for(DnevnoStanjeRacuna dsr : stanja){
-				if(dsr.getDatumStanja().equals(datum)){
-					return dsr;
+			for(DnevnoStanjeRacuna dsr1 : stanja){
+				if(dsr1.getDatumStanja().equals("01-07-2017")){
+					dsr1.setPrethodnoStanje(dsr1.getNovoStanje());
+					double aaa = dsr1.getNovoStanje();
+					dsr1.setNovoStanje(aaa+ai.getIznos());
+					double bbb = dsr1.getPrometNaTeret();
+					dsr1.setPrometNaTeret(bbb+ai.getIznos());
+					dnevnoStanjeRacunaRepo.save(dsr1);	
+					qwerty=1;
+					System.out.println("qwerty je jedannnnnnnnnnnnnnnnnnnn");
 				}
+			}
+			
+			if(qwerty==0){
+				DnevnoStanjeRacuna dsr2 = new DnevnoStanjeRacuna();
+				System.out.println("qwerty je nulaaaaaaaaaaaaa");
+				dsr2.setNovoStanje(ai.getIznos());
+				dsr2.setPrometNaTeret(ai.getIznos());
+				dnevnoStanjeRacunaRepo.save(dsr2);	
 			}*/
+			
 			
 			/*if(dnevnoStanjeRacunaRepo.findByRacunBrojRacunaAndDatumPrijema(ai.getRacunPoverioca(), ai.getDatumPrijema())!=null){
 				DnevnoStanjeRacuna dsr1 = dnevnoStanjeRacunaRepo.findByRacunBrojRacuna(ai.getRacunPoverioca());
