@@ -119,7 +119,7 @@ public class DOMWriter {
 		rad.appendChild(podaci3);
 
 		Element sifra = document.createElementNS(TARGET_NAMESPACE, "sifra");
-		sifra.appendChild(document.createTextNode("22"));
+		sifra.appendChild(document.createTextNode("14"));
 		podaci3.appendChild(sifra);
 		
 		Element valuta = document.createElementNS(TARGET_NAMESPACE, "valuta");
@@ -127,7 +127,7 @@ public class DOMWriter {
 		podaci3.appendChild(valuta);
 
 		Element iznos = document.createElementNS(TARGET_NAMESPACE, "iznos");
-		iznos.appendChild(document.createTextNode("12321"));
+		iznos.appendChild(document.createTextNode("1000"));
 		podaci3.appendChild(iznos);
 		
 		Element brojRacuna = document.createElementNS(TARGET_NAMESPACE, "brojRacuna");
@@ -135,7 +135,7 @@ public class DOMWriter {
 		podaci3.appendChild(brojRacuna);
 		
 		Element model = document.createElementNS(TARGET_NAMESPACE, "model");
-		model.appendChild(document.createTextNode("11"));
+		model.appendChild(document.createTextNode("99"));
 		podaci3.appendChild(model);
 		
 		Element pozivNaBroj = document.createElementNS(TARGET_NAMESPACE, "pozivNaBroj");
@@ -196,7 +196,15 @@ public class DOMWriter {
 		www.setDatumValute("24-06-2017");
 		www.setRacunPoverioca("111123456789123412");
 		
-		
+		/*
+		www.setDatumPrijema(qwerty.getDatumPrijema());
+		www.setNalogodavac(qwerty.getNalogodavac());
+		www.setPrimalac(qwerty.getPrimalac());
+		www.setSvrhaPlacanja(qwerty.getSvrhaPlacanja());
+		www.setDatumValute(qwerty.getDatumValute());
+		www.setRacunPoverioca(qwerty.getRacunPoverioca());
+		//www.setIznos(qwerty.getIznos());
+		*/
 		
 		
 		// Generisanje DOM stabla

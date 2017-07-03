@@ -1,5 +1,6 @@
 package com.poslovna.controller;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itextpdf.text.DocumentException;
 import com.poslovna.dom.DOMWriter;
+import com.poslovna.dom.ToPDF;
 import com.poslovna.model.AnalitikaIzvoda;
 import com.poslovna.service.AnalitikaIzvodaService;
 
@@ -51,9 +54,24 @@ public class AnalitikaIzvodaCtrl {
 			AnalitikaIzvoda aa = aaa.get(0);
 			DOMWriter a = new DOMWriter();
 			a.main();
+			//a.main(analitikaService.getAllZaRacun(Integer.parseInt(racunId)));
 			return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
 		}
 	
+		
+		// vraca sve analitike za prosledjeni
+		@RequestMapping(value = "/allpdf", 
+				method = RequestMethod.GET,
+				consumes = MediaType.TEXT_PLAIN_VALUE,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody ArrayList<AnalitikaIzvoda> getAllpdf(@RequestParam(value = "racunID") String racunId) throws FileNotFoundException, DocumentException{
+			System.out.println(racunId);
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			ToPDF toPdf = new ToPDF();
+			toPdf.makeMePDF(analitikaService.getAllZaRacun(Integer.parseInt(racunId)));
+			return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
+		}
+		
 	
 	
 	// vraca sve analitike koje nisu procesuirane

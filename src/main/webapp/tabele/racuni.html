@@ -32,7 +32,7 @@
 	</select>
 	<button type="button" id="btn-izvod">Prikazi izvod</button>
 	<button type="button2" id="btn-export-xml">Export XML</button>
-	<button type="button3" id="btn-izvod-export-pdf">Export PDF</button>
+	<button type="button3" id="btn-export-pdf">Export PDF</button>
 	<div id="div-izvod">
 		<h3>Dnevni izvod</h3><br>
 		<ul>
@@ -130,6 +130,21 @@ $(function(){
 			url: 'http://localhost:8001/poslovna/analitikaIzvoda/allxml?racunID=' + selectedIdRacuna
 		})
 	});
+	
+	
+	
+	$("#btn-export-pdf").on("click", function(){
+		var datumStanja = $("#select-datum").val();
+
+		$.ajax({
+			headers:{
+				'Content-Type': 'text/plain'
+			},
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda/allpdf?racunID=' + selectedIdRacuna
+		})
+	});
+	
 	
 	
 	
