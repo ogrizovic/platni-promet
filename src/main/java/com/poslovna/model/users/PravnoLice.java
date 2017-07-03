@@ -36,7 +36,7 @@ public class PravnoLice extends Klijent {
 	}
 
 	public PravnoLice(String ime, String prezime, String adresa, NaseljenoMesto mesto, String email, String telefon, String ptt,
-			String jmbg, Date datumRodjenja, Role role, String naziv, String delatnost, String pib, String matnicniBrPreduzeca) {
+			String jmbg, String datumRodjenja, Role role, String naziv, String delatnost, String pib, String matnicniBrPreduzeca) {
 		super(ime, prezime, adresa, mesto, email, telefon, ptt, jmbg, datumRodjenja);
 		this.naziv = naziv;
 		this.delatnost = delatnost;
@@ -45,7 +45,7 @@ public class PravnoLice extends Klijent {
 	}
 
 	public PravnoLice(String ime, String prezime, String adresa, NaseljenoMesto mesto, String email, String telefon, String ptt,
-			String jmbg, Date datumRodjenja, Role role) {
+			String jmbg, String datumRodjenja, Role role) {
 		super(ime, prezime, adresa, mesto, email, telefon, ptt, jmbg, datumRodjenja);
 		// TODO Auto-generated constructor stub
 	}

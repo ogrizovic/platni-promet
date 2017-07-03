@@ -22,7 +22,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.IndexColumn;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.poslovna.model.users.Klijent;
 
 @Entity
@@ -36,10 +38,11 @@ public class Racun {
 	
 	@Column(nullable = false, unique = true)
 	@Size(max = 18)
-	@Pattern(regexp = "[0-9]{18}")
+	@Pattern(regexp = "[0-9]{10,18}")
 	private String brojRacuna;
 	
 	@Pattern(regexp = "[ABZabz]{1}")
+	@JsonManagedReference
 	@Column(nullable = false)
 	private String status;
 	
@@ -47,6 +50,7 @@ public class Racun {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonBackReference
+//	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 	@JoinColumn(name="klijent_id")
 	private Klijent klijent;
 	
@@ -64,7 +68,6 @@ public class Racun {
 	private Collection<ZatvaranjeRacuna> zatvaranjaRacuna;
 	
 	@ManyToOne
-	@JsonBackReference
 	private Valuta valuta;
 	
 	

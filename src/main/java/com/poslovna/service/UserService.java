@@ -70,6 +70,10 @@ public class UserService implements CrudService<User>{
 		return new BigInteger(5, new SecureRandom()).toString();
 	}
 	
+	public String generateUsername(){
+		return new BigInteger(5, new SecureRandom()).toString();
+	}
+	
 	public byte[] hashPassword(String password, byte[] salt){
 		char[] pass = password.toCharArray();
 		try {

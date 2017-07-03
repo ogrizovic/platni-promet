@@ -33,9 +33,9 @@ public class User {
 	private int id;
 	
 	@Column(unique = true, nullable = false)
-	@Size(min = 6, max = 30)
+	//@Size(min = 6, max = 30)
 	@NotEmpty
-	@Pattern(regexp = "[\\w]{6,30}")
+	//@Pattern(regexp = "[\\w]{6,30}")
 	private String username;
 	
 	@Column(unique = true, nullable = false)
@@ -60,7 +60,7 @@ public class User {
 	@ManyToOne
 	private Banka bank;
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne(/*mappedBy = "user"*/)
 	@JoinColumn(name="klijent_id")
 	private Klijent klijent;
 	

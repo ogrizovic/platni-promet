@@ -23,6 +23,14 @@ public class AnalitikaIzvodaService {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ArrayList<AnalitikaIzvoda> getAllZaRacun(int racunId, String datum){
+		Racun racun = racunRepo.findOne(racunId);
+		String brojRacuna = racun.getBrojRacuna();
+		ArrayList<AnalitikaIzvoda> tmp = analitikaRepo.findByRacunDuznikaAndDatumPrijema(brojRacuna, datum);
+		tmp.addAll(analitikaRepo.findByRacunPoveriocaAndDatumPrijema(brojRacuna, datum));
+		return tmp;
+	}
+	
 	public ArrayList<AnalitikaIzvoda> getAllZaRacun(int racunId){
 		Racun racun = racunRepo.findOne(racunId);
 		String brojRacuna = racun.getBrojRacuna();

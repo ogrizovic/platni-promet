@@ -36,9 +36,10 @@ public class AnalitikaIzvodaCtrl {
 			method = RequestMethod.GET,
 			consumes = MediaType.TEXT_PLAIN_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ArrayList<AnalitikaIzvoda> getAll(@RequestParam(value = "racunID") String racunId){
+	public @ResponseBody ArrayList<AnalitikaIzvoda> getAll(@RequestParam(value = "racunID") String racunId,
+			@RequestParam(value = "datum") String datum){
 		System.out.println(racunId);
-		return analitikaService.getAllZaRacun(Integer.parseInt(racunId));
+		return analitikaService.getAllZaRacun(Integer.parseInt(racunId), datum);
 	}
 	
 	

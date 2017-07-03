@@ -26,6 +26,7 @@ import com.poslovna.model.users.PravnoLice;
 import com.poslovna.model.users.access.User;
 import com.poslovna.repo.BankaRepo;
 import com.poslovna.repo.KlijentRepo;
+import com.poslovna.repo.ValutaRepo;
 import com.poslovna.service.KlijentService;
 import com.poslovna.service.RacunService;
 
@@ -42,6 +43,9 @@ public class RacunCtrl {
 	@Autowired
 	private BankaRepo bankaRepo;
 	
+	@Autowired
+	private ValutaRepo valutaRepo;
+	
 	public RacunCtrl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -51,24 +55,24 @@ public class RacunCtrl {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Racun> addFizickiRacun(HttpServletRequest request, @RequestBody Valuta valuta){
+	public ResponseEntity<Racun> addFizickiRacun(HttpServletRequest request, @RequestParam(name = "klijentID") Integer klijentID){
 		Racun racun = new Racun();
-		User sessionUser = (User) request.getSession().getAttribute("user");
-		if (sessionUser == null){
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
-		Klijent klijent =  sessionUser.getKlijent();
-		racun.setValuta(valuta);
-		racun.setKlijent(klijent);
+//		User sessionUser = (User) request.getSession().getAttribute("user");
+//		if (sessionUser == null){
+//			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//		}
+//		Klijent klijent =  sessionUser.getKlijent();
+		racun.setValuta(valutaRepo.findOne(1));
+		racun.setKlijent(klijentService.getById(klijentID));
 		racun.setStatus("A");
 		racun.setBanka(bankaRepo.findOne(1)); // jedna jedina banka u bazi
 		racun.setBrojRacuna(racunService.generateBrojRacuna());
 		
-		ArrayList<Racun> racuni = (ArrayList<Racun>) klijent.getRacuni();
-		racuni.add(racun);
-		klijent.setRacuni(racuni);
+//		Set<Racun> racuni = (Set<Racun>) klijent.getRacuni();
+//		racuni.add(racun);
+//		klijent.setRacuni(racuni);
 		
-		klijentService.update(klijent);
+		racunService.update(racun);
 		
 		return new ResponseEntity<Racun>(racun, HttpStatus.ACCEPTED);
 	}
@@ -92,5 +96,15 @@ public class RacunCtrl {
 			}
 		}
 		return null;
+	}
+	
+	@RequestMapping(value = "/gasenje", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Racun gasenjeRacuna(@RequestParam(name = "racunID") String racunId){
+		Racun racun = racunService.getById(Integer.parseInt(racunId));
+		racun.setStatus("Z");
+		racunService.update(racun);
+		return racun;
 	}
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Pravno lice racun</title>
+</head>
+<body>
+<a href="http://localhost:8001/poslovna/">Home</a>
+<a href="http://localhost:8001/poslovna/tabele/racuni.html">Racuni</a>
+<h3>Novi racun za pravno lice</h3>
+<form id="klijent-form">
+	<table id="klijent-table">
+		<tr>
+			<td>Naziv</td>
+			<td><input type="text" name="naziv"></td>
+		</tr>
+		<tr>
+			<td>Delatnost</td>
+			<td><input type="text" name="delatnost"></td>
+		</tr>
+		<tr>
+			<td>PIB</td>
+			<td><input type="text" name="pib"></td>
+		</tr>
+		<tr>
+			<td>Maticni broj preduzeca</td>
+			<td><input type="text" name="mbp"></td>
+		</tr>
+		<tr>
+			<td>Adresa</td>
+			<td><input type="text" name="adresa"></td>
+		</tr>
+		<tr>
+			<td>Mesto</td>
+			<td><input type="text" id="mesto"></td>
+		</tr>
+		<tr>
+			<td>Postanski broj</td>
+			<td><input type="text" name="ptt"></td>
+		</tr>
+		<tr>
+			<td>E-mail</td>
+			<td><input type="text" name="email" id="email"></td>
+		</tr>
+		<tr>
+			<td>Telefon</td>
+			<td><input type="text" name="telefon"></td>
+		</tr>
+		<tr>
+			<td>Ime odgovornog lica</td>
+			<td><input type="text" name="ime"></td>
+		</tr>
+		<tr>
+			<td>Prezime odgovornog lica</td>
+			<td><input type="text" name="prezime"></td>
+		</tr>
+		<tr>
+			<td>JMBG</td>
+			<td><input type="text" name="jmbg"></td>
+		</tr>
+		<tr>
+			<td>Datum rodjenja</td>
+			<td><input type="text" name="datumRodjenja"></td>
+		</tr>
+		
+	</table>
+</form>
+<br>
+<button id="btn">OK</button>
+<div id="div-racun">
+<h3>Podaci o racunu:</h3>
+	<table id="table-racun">
+		<tr>
+			<td>Broj racuna:</td>
+			<td id="cell-br"></td>
+		</tr>
+		<tr>
+			<td>Status:</td>
+			<td id="cell-status"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

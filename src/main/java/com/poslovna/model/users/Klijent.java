@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
@@ -73,11 +80,17 @@ public class Klijent implements Client{
 	@Pattern(regexp = "[0-9]{13}", message = "JMBG mora imati 13 cifara.")
 	private String jmbg;
 	
-	@Column(name = "datumRodjenja", columnDefinition = "DATE")
-	@Temporal(TemporalType.DATE)
-	@JsonSerialize(using = DateSerializer.class)
-	@JsonDeserialize(using = DateDeserializer.class)
-	private Date datumRodjenja;
+//	@Column(name = "datumRodjenja", columnDefinition = "DATE")
+//	@Temporal(TemporalType.DATE)
+//	@JsonSerialize(using = DateSerializer.class)
+//	@JsonDeserialize(using = DateDeserializer.class)
+//	private Date datumRodjenja;
+	
+	@Column(unique = false, nullable = false)
+	@Size(max = 256)
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}")
+	private String datumRodjenja;
 	
 	@Column(nullable = false)
 	private boolean fizickoLice;
@@ -86,19 +99,19 @@ public class Klijent implements Client{
 	@ManyToOne
 	private NaseljenoMesto mesto;
 	
-	@OneToMany(mappedBy="klijent", cascade = {CascadeType.ALL})
-	private Collection<Racun> racuni = new ArrayList<Racun>();
+	//@OneToMany(/*mappedBy="klijent", */cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+	//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+	//private Set<Racun> racuni = new HashSet<Racun>(); // managed
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id")
-	private User user;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="user_id")
+//	private User user;
 	
 	public Klijent() {
-		this.racuni = new ArrayList<>();
 	}
 
 	public Klijent(String ime, String prezime, String adresa, NaseljenoMesto mesto, String email, String telefon, String ptt,
-			String jmbg, Date datumRodjenja) {
+			String jmbg, String datumRodjenja) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -175,21 +188,21 @@ public class Klijent implements Client{
 		this.jmbg = jmbg;
 	}
 
-	public Date getDatumRodjenja() {
+	public String getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(Date datumRodjenja) {
+	public void setDatumRodjenja(String datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
-	public Collection<Racun> getRacuni() {
-		return racuni;
-	}
-
-	public void setRacuni(Collection<Racun> racuni) {
-		this.racuni = racuni;
-	}
+//	public Collection<Racun> getRacuni() {
+//		return racuni;
+//	}
+//
+//	public void setRacuni(Set<Racun> racuni) {
+//		this.racuni = racuni;
+//	}
 
 	public int getId() {
 		return id;
@@ -199,13 +212,13 @@ public class Klijent implements Client{
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	public boolean isFizickoLice() {
 		return fizickoLice;

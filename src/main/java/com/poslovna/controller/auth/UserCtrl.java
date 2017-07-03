@@ -98,29 +98,38 @@ public class UserCtrl implements Interceptable{
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> register(HttpServletRequest request, @RequestBody RegisterUserDTO newUserDto){
 		
+		User myUser;
+		User user = new User();
 		
-		User sessionUser = (User) request.getSession().getAttribute("user");
+		do{
+			myUser = new User(userService.generateUsername(), 
+					newUserDto.getEmail(),
+					userService.generatePassword());
+			user = userService.getByUsername(myUser.getUsername());
+		}while(user != null);
 		
-		if(sessionUser != null){
-			return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
-		}
+//		User sessionUser = (User) request.getSession().getAttribute("user");
 		
-		User user = userService.getByUsername(newUserDto.getUsername());
+//		if(sessionUser != null){
+//			return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
+//		}
 		
-		if(user != null){
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-		}
+//		User user = userService.getByUsername(newUserDto.getUsername());
+		
+//		if(user != null){
+//			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+//		}
 		
 		User newUser = new User();
-		newUser.setUsername(newUserDto.getUsername());
-		newUser.setEmail(newUserDto.getEmail());
+		newUser.setUsername(myUser.getUsername());
+		newUser.setEmail(myUser.getEmail());
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(roleService.getByRoleName("CLIENT"));
 		newUser.setRoles(roles);
 		byte[] salt = userService.generateSalt();
 		newUser.setSalt(salt);
 		newUser.setBank(bankService.getById(1));
-		newUser.setPassword(new String(userService.hashPassword(newUserDto.getPassword(), salt), Charset.forName("US-ASCII")));
+		newUser.setPassword(new String(userService.hashPassword(myUser.getPassword(), salt), Charset.forName("US-ASCII")));
 		
 		userService.add(newUser);
 		
@@ -136,9 +145,9 @@ public class UserCtrl implements Interceptable{
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Klijent> registracijaFizickogLica(HttpServletRequest request, 
 			@RequestBody Klijent klijent){
-		User sessionUser = (User) request.getSession().getAttribute("user");
-		klijent.setUser(userService.getById(sessionUser.getId()));
-		sessionUser.setKlijent(klijent);
+		//User sessionUser = (User) request.getSession().getAttribute("user");
+		//klijent.setUser(userService.getById(sessionUser.getId()));
+		//sessionUser.setKlijent(klijent);
 		
 		klijentRepo.save(klijent);
 		return new ResponseEntity<Klijent>(klijent, HttpStatus.OK); 
@@ -151,8 +160,8 @@ public class UserCtrl implements Interceptable{
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PravnoLice> registracijaPravnogLica(HttpServletRequest request, 
 			@RequestBody PravnoLice pLice){
-		User sessionUser = (User) request.getSession().getAttribute("user");
-		pLice.setUser(userService.getById(sessionUser.getId()));
+//		User sessionUser = (User) request.getSession().getAttribute("user");
+//		pLice.setUser(userService.getById(sessionUser.getId()));
 		return new ResponseEntity<PravnoLice>(pLice, HttpStatus.OK); 
 	}
 	

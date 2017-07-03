@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Fizicko lice racun</title>
+</head>
+<body>
+<a href="http://localhost:8001/poslovna/">Home</a>
+<a href="http://localhost:8001/poslovna/tabele/racuni.html">Racuni</a>
+<h3>Novi racun za fizicko lice</h3>
+<form id="klijent-form">
+	<table id="klijent-table">
+		<tr>
+			<td>Ime</td>
+			<td><input type="text" name="ime"></td>
+		</tr>
+		<tr>
+			<td>Prezime</td>
+			<td><input type="text" name="prezime"></td>
+		</tr>
+		<tr>
+			<td>JMBG</td>
+			<td><input type="text" name="jmbg"></td>
+		</tr>
+		<tr>
+			<td>Datum rodjenja</td>
+			<td><input type="text" name="datumRodjenja"></td>
+		</tr>
+		<tr>
+			<td>Adresa</td>
+			<td><input type="text" name="adresa"></td>
+		</tr>
+		<tr>
+			<td>Mesto</td>
+			<td><input type="text" id="mesto"></td>
+		</tr>
+		<tr>
+			<td>Postanski broj</td>
+			<td><input type="text" name="ptt"></td>
+		</tr>
+		<tr>
+			<td>E-mail</td>
+			<td><input type="text" name="email" id="email"></td>
+		</tr>
+		<tr>
+			<td>Telefon</td>
+			<td><input type="text" name="telefon"></td>
+		</tr>
+	</table>
+</form>
+<br>
+<button id="btn">OK</button>
+<div id="div-racun">
+<h3>Podaci o racunu:</h3>
+	<table id="table-racun">
+		<tr>
+			<td>Broj racuna:</td>
+			<td id="cell-br"></td>
+		</tr>
+		<tr>
+			<td>Status:</td>
+			<td id="cell-status"></td>
+		</tr>
+	</table>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+
+	var klijent = {};
+
+	$("#btn").on("click", function(){
+		// var user = new Object();
+		// user.username = "";
+		// user.password = "";
+		// user.email = $("#email").val();
+
+		var data = {};
+		$("#klijent-form").serializeArray().map(function(x){
+			data[x.name] = x.value;
+		});
+		data.fizickoLice = true; 
+		var jsonD = JSON.stringify(data);
+
+		$.ajax({
+			headers:{
+				'Content-Type':'application/json'
+			},
+			type: 'POST',
+			url: 'http://localhost:8001/poslovna/register/fizicko',
+			data: jsonD
+		}).
+		done(function(data){
+			klijent = data;
+			console.log("klijent ");
+		}).
+		then(function(){
+
+			return $.ajax({
+				headers:{
+					'Content-Type':'application/json'
+				},
+				type: 'POST',
+				url: 'http://localhost:8001/poslovna/racuni/fizickoLice?klijentID=' + klijent.id
+			}).
+			done(function(data){
+				console.log(data.brojRacuna);
+				$("#cell-br").append(data.brojRacuna);
+				$("#cell-status").append(data.status);
+			});
+		});
+
+
+		
+	});
+
+	
+
+});
+</script>
+</html>

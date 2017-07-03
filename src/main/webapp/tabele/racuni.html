@@ -13,12 +13,13 @@
 </head>
 <body>
 
-	<label>Racuni</label>
+	<h2>Racuni</h2>
+	<a href="http://localhost:8001/poslovna/noviRacunFizicko.html">Novi racun fizicko lice</a><br>
+	<a href="http://localhost:8001/poslovna/noviRacunPravno.html">Novi racun pravno lice</a><br><br>
 	<table id="table-racuni" border="1">
 		<thead>
 			<tr>
 				<th style="display:none;">id</th>
-				<th>Klijent</th>
 				<th>Broj racuna</th>
 				<th>Status</th>
 			</tr>
@@ -31,6 +32,7 @@
 		<option value="2017-06-24" id="select-datum">2017-06-24</option>
 	</select>
 	<button type="button" id="btn-izvod">Prikazi izvod</button>
+	<button type="button" id="btn-gasenje">Gasenje racuna</button><br><br>
 	<button type="button2" id="btn-export-xml">Export XML</button>
 	<button type="button3" id="btn-export-pdf">Export PDF</button>
 	<div id="div-izvod">
@@ -89,6 +91,7 @@ $(function(){
 	});
 
 	$("#btn-izvod").on("click", function(){
+		$("#table-izvod tr").remove("tr:gt(0)");
 		var datumStanja = $("#select-datum").val();
 
 		$.ajax({
@@ -96,7 +99,7 @@ $(function(){
 				'Content-Type': 'text/plain'
 			},
 			type: 'GET',
-			url: 'http://localhost:8001/poslovna/analitikaIzvoda/all?racunID=' + selectedIdRacuna
+			url: 'http://localhost:8001/poslovna/analitikaIzvoda/all?racunID=' + selectedIdRacuna + '&datum=' + datumStanja
 		}).
 		done(function(data){
 			$("#table-izvod").show();
@@ -146,17 +149,24 @@ $(function(){
 	});
 	
 	
-	
+	$("#btn-gasenje").on("click", function(data){
+		$.ajax({
+			type: 'GET',
+			url: 'http://localhost:8001/poslovna/racuni/gasenje?racunID=' + selectedIdRacuna
+		}).
+		done(fillTableRacuni());
+	});
 	
 
 	function fillTableRacuni(){
+		$("#table-racuni tr").remove("tr:gt(0)");
 		$.ajax({
 			type: 'GET',
 			url: 'http://localhost:8001/poslovna/racuni'
 		}).
 		done(function(data){
 			for (var i = data.length - 1; i >= 0; i--) {
-				$("#table-racuni").append("<tr><td style='display:none;'>" + data[i].id + "</td><td>" + data[i].klijent + "</td><td>" + data[i].brojRacuna + "</td><td>" + data[i].status + "</td></tr>");
+				$("#table-racuni").append("<tr><td style='display:none;'>" + data[i].id + "</td><td>" + data[i].brojRacuna + "</td><td>" + data[i].status + "</td></tr>");
 			}
 		});
 	}
