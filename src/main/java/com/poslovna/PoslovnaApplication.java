@@ -9,12 +9,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class PoslovnaApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(PoslovnaApplication.class, args);
-		configureApplication(new SpringApplicationBuilder()).run(args);
+		SpringApplication.run(PoslovnaApplication.class, args);
+//		configureApplication(new SpringApplicationBuilder()).run(args);
 	}
 	
-	private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {
-        return builder.sources(PoslovnaApplication.class);
-    }
+//	private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {
+//        return builder.sources(PoslovnaApplication.class);
+//    }
 	
 }
