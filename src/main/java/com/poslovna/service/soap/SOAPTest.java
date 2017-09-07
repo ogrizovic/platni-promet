@@ -3,11 +3,13 @@ package com.poslovna.service.soap;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.WebService;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebService(endpointInterface = "com.poslovna.service.soap.SOAPTestI")
-public class SOAPTest implements SOAPTestI {
+public class SOAPTest extends SpringBeanAutowiringSupport implements SOAPTestI {
 
+	public SOAPTest() {
+		// TODO Auto-generated constructor stub
+	}
 	/* (non-Javadoc)
 	 * @see com.poslovna.service.soap.SOAPTestI#getTestData()
 	 */

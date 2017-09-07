@@ -91,19 +91,42 @@
     <artifactId>pdfbox</artifactId>
     <version>2.0.4</version>
 </dependency>
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.sun.xml.ws</groupId> -->
-<!-- 			<artifactId>jaxws-rt</artifactId> -->
-<!-- 			<version>2.2.10</version> -->
-<!-- 		</dependency> -->
-		
-<!-- 		<dependency> -->
-<!-- 		    <groupId>com.sun.xml.bind</groupId> -->
-<!-- 		    <artifactId>jaxb-impl</artifactId> -->
-<!-- 		    <version>2.1.17</version> -->
-<!-- 		</dependency> -->
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>local-jar</groupId>
+			<artifactId>serializer</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>local-jar</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>local-jar</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>local-jar</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+		<dependency>
+			<groupId>local-jar</groupId>
+			<artifactId>xml-resolver</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -113,15 +136,35 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
+<!-- 			<plugin> -->
+<!--                 <groupId>org.apache.maven.plugins</groupId> -->
+<!--                 <artifactId>maven-compiler-plugin</artifactId> -->
+<!--                 <version>3.5.1</version> -->
+<!--                 <configuration> -->
+<!--                     <source>1.8</source> -->
+<!--                     <target>1.8</target> -->
+<!--                 </configuration> -->
+<!--             </plugin> -->
+
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>${project.basedir}/src/main/resources/xsdws</schemaDirectory>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+					<schemaFiles>test.xsd</schemaFiles>
+				</configuration>
+			</plugin>
 			
 		</plugins>
 	</build>

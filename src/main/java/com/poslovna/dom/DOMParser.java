@@ -6,6 +6,7 @@ import java.util.Scanner;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.xerces.jaxp.JAXPConstants;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -25,7 +26,7 @@ import com.poslovna.model.AnalitikaIzvoda;
 
 import ch.qos.logback.core.subst.NodeToStringTransformer;
 
-import static org.apache.xerces.jaxp.JAXPConstants.*;
+//import org.apache.xerces.jaxp.JAXPConstants.*;
 
 /**
  * 
@@ -63,7 +64,8 @@ public class DOMParser implements ErrorHandler {
 		factory.setIgnoringElementContentWhitespace(true);
 		
 		/* Validacija u odnosu na XML šemu. */
-		factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+		
+		factory.setAttribute(JAXPConstants.JAXP_SCHEMA_LANGUAGE, JAXPConstants.W3C_XML_SCHEMA);
 	}
 	
 	/**
