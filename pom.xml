@@ -127,6 +127,8 @@
 			<artifactId>xml-resolver</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
@@ -136,15 +138,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
-<!-- 			<plugin> -->
-<!--                 <groupId>org.apache.maven.plugins</groupId> -->
-<!--                 <artifactId>maven-compiler-plugin</artifactId> -->
-<!--                 <version>3.5.1</version> -->
-<!--                 <configuration> -->
-<!--                     <source>1.8</source> -->
-<!--                     <target>1.8</target> -->
-<!--                 </configuration> -->
-<!--             </plugin> -->
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
