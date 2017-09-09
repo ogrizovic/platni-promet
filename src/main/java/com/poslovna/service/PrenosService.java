@@ -112,4 +112,8 @@ public AnalitikaIzvoda odrediKojiJeXml(String a){
 	}
 }
 	
+public AnalitikaIzvoda wsPrenos() {
+	// TODO: implement
+	return null;
+}
 }

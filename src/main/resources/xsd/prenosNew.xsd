@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://poslovna.com/ws/nalog"
+	targetNamespace="http://poslovna.com/ws/nalog" 
+	elementFormDefault="qualified">
+	<xs:element name="nalogZaPrenos" type="prenos"/>
+
+	<xs:complexType name="prenos">
+		<!-- <xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="com.poslovna.model.AnalitikaIzvoda"/>
+			</xs:appinfo>
+		</xs:annotation> -->
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="nalogodavac" type="xs:string"/>
+			<xs:element name="svrhaPlacanja" type="xs:string"/>
+			<xs:element name="primalac" type="xs:string"/>
+			<xs:element name="datumNaloga" type="xs:string"/>
+			<xs:element name="datumValute" type="xs:string"/>
+			<xs:element name="racunDuznika" type="xs:string"/>
+			<xs:element name="modelZaduzenja">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:enumeration value="00"/>
+						<xs:enumeration value="97"/>
+					</xs:restriction>										
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pozivNaBrojZaduzenja">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{1,20}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="racunPrimaoca" type="xs:string"/>
+			<xs:element name="modelOdobrenja">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:enumeration value="00"/>
+						<xs:enumeration value="97"/>
+					</xs:restriction>										
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pozivNaBrojOdobrenja">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{1,20}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="iznos">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:pattern value="(\d+((\.)\d+)?)"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="oznakaValute" >
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="RSD"/>
+						<xs:enumeration value="EUR"/>
+						<xs:enumeration value="RUB"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hitno" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

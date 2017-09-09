@@ -86,8 +86,8 @@ public class UplataService implements CrudService<AnalitikaIzvoda>{
 	public AnalitikaIzvoda odrediKojiJeXml(String a){
 		
 		if(a.equals("name1")){
-//			filePath = "D:\\workspace_4\\poslovna\\src\\main\\resources\\xml\\uplata1.xml";
-			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
+			filePath = "C:\\Users\\ogriz\\git1\\platni-promet\\src\\main\\resources\\xml\\uplata1.xml";
+//			filePath = "C:\\Users\\Nikola\\Downloads\\4.Godina\\BEZBEDNOST\\GIT2\\xml\\uplata1.xml";
 			AnalitikaIzvoda ai = parser.parseXML(filePath);
 			ai.setValuta(valutaRepo.findOne(1));
 			ai.setMestoPrijema(naseljenomestoRepo.findOne(1));
